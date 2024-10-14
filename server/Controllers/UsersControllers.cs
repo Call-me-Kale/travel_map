@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using server.Models;
+using server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace server.Controllers
 {
@@ -7,20 +9,23 @@ namespace server.Controllers
     [Route("api/[controller]")]
     public class UsersControllers : ControllerBase
     {
-        private static List<User> users = new List<User>()
+        private readonly ApiDbContext _context;
+
+        public UsersControllers(ApiDbContext context)
         {
-            new User(){ Id = 1, Name = "User 1" },
-            new User(){ Id = 2, Name = "User 2" }
-        };
+            _context = context;
+        }
+
+
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAll()
+        public async Task<ActionResult<IEnumerable<User>>> GetAll()
         {
-            return users;
+            return await _context.Users.ToListAsync();
         }
         [HttpGet("{id}")]
-        public ActionResult<User> GetById(int id)
+        public async Task<ActionResult<User>> GetById(int id)
         { 
-            var user = users.FirstOrDefault(p => p.Id == id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -28,32 +33,51 @@ namespace server.Controllers
             return user;
         }
         [HttpPost]
-        public ActionResult<User> Create(User user)
+        public async Task<ActionResult<User>> Create(User user)
         {
-            user.Id = users.Max(p => p.Id) + 1;
-            users.Add(user);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
         }
         [HttpPut("{id}")]
-        public IActionResult Update(int id, User user)
+        public async Task<IActionResult> Update(int id, User user)
         {
-            var existingUser = users.FirstOrDefault(p => p.Id == id);
-            if (existingUser == null)
+            if (id != user.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
-            existingUser.Name = user.Name;
+
+            _context.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if(!_context.Users.Any(e => e.Id == id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Wystąpił problem podczas aktualizacji użytkownika.");
+                }
+            }
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var user = users.FirstOrDefault(p => p.Id == id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
-            users.Remove(user);
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
     }
