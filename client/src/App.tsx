@@ -13,7 +13,7 @@ const App = () => {
           <Route path="/visited_countries" element={<VisitedCoutriesPage />} />
           <Route path="/flies" element={<FliesPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/sign_in_out" element={<SignPage />} />
+          <Route path="/sign" element={<SignPage />} />
         </ Route>
       </Routes>
     </StyledApp>
