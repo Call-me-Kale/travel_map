@@ -1,36 +1,42 @@
 import styled from "@emotion/styled";
 import { TextField, Button } from "@mui/material";
 
-export const SignIn = () => {
+export const Register = () => {
 
     return(
-        <SignInContainer>
+        <RegisterContainer>
             <Header>
-                <h1>Logowanie</h1>
+                <h1>Rejestracja</h1>
             </Header>
             <InputsContainer>
                 <StyledTextField
                     required
                     id="outlined-required"
-                    label="login"
+                    label="Login"
                     defaultValue=""
                 />
                 <StyledTextField
                     required
                     id="outlined-required"
-                    label="password"
+                    label="Password"
+                    defaultValue=""
+                />
+                <StyledTextField
+                    required
+                    id="outlined-required"
+                    label="Retry password"
                     defaultValue=""
                 />
                 <StyledButton variant="contained">
-                Zaloguj
+                Stwórz
                 </StyledButton>
             </InputsContainer>
             <OtherContainer></OtherContainer>
-        </SignInContainer>
+        </RegisterContainer>
     );
 };
 
-const SignInContainer = styled.div`
+const RegisterContainer = styled.div`
     height: 500px;
     width: 400px;
 `;
@@ -44,7 +50,7 @@ const Header = styled.div`
 `;
 
 const InputsContainer = styled.div`
-    height: 35%;
+    height: 55%;
     width: 100%;
     display: flex;
     align-items: center;

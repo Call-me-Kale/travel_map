@@ -1,3 +1,4 @@
+import { FliesList } from "../components/flies_page";
 import styled from "@emotion/styled";
 
 
@@ -6,7 +7,7 @@ export const FliesPage = () => {
 
     return(
         <StyledFliesPage>
-            <></>
+            <FliesList />
         </StyledFliesPage>
     );
 };

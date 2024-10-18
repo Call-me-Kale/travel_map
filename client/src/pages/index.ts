@@ -2,4 +2,5 @@ export * from './MainPage';
 export * from './DashboardPage';
 export * from './FliesPage';
 export * from './VisitedCountriesPage';
-export * from './SignPage';
+export * from './LogInPage';
+export * from './RegisterPage';

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components";
-import { MainPage, DashboardPage, FliesPage, VisitedCoutriesPage, SignPage } from "./pages";
+import { MainPage, DashboardPage, FliesPage, VisitedCoutriesPage, LogInPage, RegisterPage } from "./pages";
 
 const App = () => {
   return (
@@ -13,7 +13,8 @@ const App = () => {
           <Route path="/visited_countries" element={<VisitedCoutriesPage />} />
           <Route path="/flies" element={<FliesPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/sign" element={<SignPage />} />
+          <Route path="/login" element={<LogInPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </ Route>
       </Routes>
     </StyledApp>

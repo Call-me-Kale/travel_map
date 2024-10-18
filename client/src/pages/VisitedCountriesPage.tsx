@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { CountriesList } from "../components/visited_countries_page";
 
 
 export const VisitedCoutriesPage = () => {
@@ -6,7 +7,7 @@ export const VisitedCoutriesPage = () => {
 
     return(
         <StyledVisitedCoutriesPage>
-            <></>
+            <CountriesList />
         </StyledVisitedCoutriesPage>
     );
 };
