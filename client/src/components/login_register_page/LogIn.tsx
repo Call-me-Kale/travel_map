@@ -25,6 +25,7 @@ export const LogIn = () => {
                 Zaloguj
                 </StyledButton>
             </InputsContainer>
+                <a>Odzyskaj hasło</a>
             <OtherContainer></OtherContainer>
         </LogInContainer>
     );
@@ -33,6 +34,15 @@ export const LogIn = () => {
 const LogInContainer = styled.div`
     height: 500px;
     width: 400px;
+
+    a {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #1976d2;
+        text-decoration: underline;
+        margin-top: 8px;
+    }
 `;
 
 const Header = styled.div`
