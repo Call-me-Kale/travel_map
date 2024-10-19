@@ -2,6 +2,7 @@
 using server.Models;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace server.Controllers
 {
@@ -22,15 +23,25 @@ namespace server.Controllers
         {
             return await _context.Users.ToListAsync();
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetById(int id)
+        [HttpGet("{email}")]
+        public async Task<ActionResult<User>> GetByEmail(string email)
         { 
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
                 return NotFound();
             }
             return user;
+        }
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login([FromBody] server.Models.LoginRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user == null || user.Password != request.Password)
+            {
+                return Unauthorized(); 
+            }
+            return Ok(user);
         }
         [HttpPost]
         public async Task<ActionResult<User>> Create(User user)
@@ -38,7 +49,7 @@ namespace server.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetByEmail), new { id = user.Id }, user);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)

@@ -1,9 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface User {
-    id: string;
+    id: number;
     name: string;
+    password: string;
+    email: string;
     isLogged: boolean;
+}
+
+interface Login {
+    email: string;
+    password: string;
 }
 
 interface InitialStateInterface {
@@ -12,23 +20,48 @@ interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
     user: {
-        id: 'd23nd32ud8',
+        id: 0,
         name: 'Guest',
-        isLogged: true
+        password: 'admin',
+        email: 'guest@gmail.com',
+        isLogged: false
     },
 }
 
+export const postLogin = createAsyncThunk(
+    "login",
+    async (payload: Login, {signal}) => {
+        const source = axios.CancelToken.source();
+        signal.addEventListener('abort', () => {
+            source.cancel();
+        });
+
+        return axios.post(`http://localhost:5150/api/UsersControllers/login`, {
+            email: payload.email,
+            password: payload.password
+        });
+        
+    }
+)
 
 const usersSlice = createSlice({
     name: 'usersSlice',
     initialState,
     reducers: {
         logOut(state) {
-            state.user.id = 'd23nd32ud8';
+            state.user.id = 0;
             state.user.name = 'Guest';
+            state.user.password = 'admin';
+            state.user.email = 'e@gmail.com';
             state.user.isLogged = false;
         }
-    }
+    },
+    extraReducers(builder) {
+        builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
+            state.user.isLogged = true;
+            console.log(payload);
+        })
+    },
 
 })
 

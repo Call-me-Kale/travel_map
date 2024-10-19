@@ -1,7 +1,16 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { TextField, Button } from "@mui/material";
+import { useAppDispatch } from "../../store/hooks";
+import { postLogin } from "../../store/slices";
 
 export const LogIn = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const dispatch = useAppDispatch();
+    const logInHandler = () => {
+        dispatch(postLogin({email, password}));
+    }
 
     return(
         <LogInContainer>
@@ -14,14 +23,16 @@ export const LogIn = () => {
                     id="outlined-required"
                     label="Login"
                     defaultValue=""
+                    onChange={(e:any) => setEmail(e.target.value)}
                 />
                 <StyledTextField
                     required
                     id="outlined-required"
                     label="Password"
                     defaultValue=""
+                    onChange={(e:any) => setPassword(e.target.value)}
                 />
-                <StyledButton variant="contained">
+                <StyledButton variant="contained" onClick={() => logInHandler()}>
                 Zaloguj
                 </StyledButton>
             </InputsContainer>
