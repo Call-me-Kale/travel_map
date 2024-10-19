@@ -1,7 +1,21 @@
+import { useState } from "react";
+import { useAppDispatch } from "../../store/hooks";
+import { postRegister } from "../../store/slices";
 import styled from "@emotion/styled";
 import { TextField, Button } from "@mui/material";
 
 export const Register = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [retryPassword, setRetryPassword] = useState<string>('');
+
+    const dispatch = useAppDispatch();
+
+    const registerHandler = () => {
+        if(password === retryPassword) {
+            dispatch(postRegister({email, password}))
+        }
+    }
 
     return(
         <RegisterContainer>
@@ -14,20 +28,23 @@ export const Register = () => {
                     id="outlined-required"
                     label="Login"
                     defaultValue=""
+                    onChange={(e:any) => setEmail(e.target.value)}
                 />
                 <StyledTextField
                     required
                     id="outlined-required"
                     label="Password"
                     defaultValue=""
+                    onChange={(e:any) => setPassword(e.target.value)}
                 />
                 <StyledTextField
                     required
                     id="outlined-required"
                     label="Retry password"
                     defaultValue=""
+                    onChange={(e:any) => setRetryPassword(e.target.value)}
                 />
-                <StyledButton variant="contained">
+                <StyledButton variant="contained" onClick={() => registerHandler()}>
                 Stwórz
                 </StyledButton>
             </InputsContainer>

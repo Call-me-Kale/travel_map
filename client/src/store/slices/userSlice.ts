@@ -44,6 +44,22 @@ export const postLogin = createAsyncThunk(
     }
 )
 
+export const postRegister = createAsyncThunk(
+    "register",
+    async (payload: Login, {signal}) => {
+        const source = axios.CancelToken.source();
+        signal.addEventListener('abort', () => {
+            source.cancel();
+        });
+
+        return axios.post(`http://localhost:5150/api/UsersControllers/register`, {
+            email: payload.email,
+            password: payload.password
+        });
+        
+    }
+)
+
 const usersSlice = createSlice({
     name: 'usersSlice',
     initialState,
@@ -60,6 +76,9 @@ const usersSlice = createSlice({
         builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
             state.user.isLogged = true;
             console.log(payload);
+        }),
+        builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
+            
         })
     },
 
