@@ -24,7 +24,7 @@ const initialState: InitialStateInterface = {
         name: 'Guest',
         password: 'admin',
         email: 'guest@gmail.com',
-        isLogged: false
+        isLogged: true
     },
 }
 
@@ -76,10 +76,10 @@ const usersSlice = createSlice({
         builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
             state.user.isLogged = true;
             console.log(payload);
-        }),
+        });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
-            
-        })
+            console.log(payload);
+        });
     },
 
 })
