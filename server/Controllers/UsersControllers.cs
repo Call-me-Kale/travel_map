@@ -43,13 +43,13 @@ namespace server.Controllers
             }
             return Ok(user);
         }
-        [HttpPost]
-        public async Task<ActionResult<User>> Create(User user)
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> Register(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetByEmail), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetByEmail), new { id = user.Email }, user);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)
