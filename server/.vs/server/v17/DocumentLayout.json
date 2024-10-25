@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\data\\apidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
@@ -80,8 +80,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-13T06:41:42.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-13T06:41:42.273Z"
             },
             {
               "$type": "Document",
@@ -93,8 +92,7 @@
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-13T06:41:35.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-13T06:41:35.44Z"
             },
             {
               "$type": "Document",
@@ -130,44 +128,43 @@
               "RelativeToolTip": "Migrations\\20241014083459_InitialCreate.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T08:34:59.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T08:34:59.561Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T06:21:48.451Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UsersControllers.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersControllers.cs",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeToolTip": "Controllers\\UsersControllers.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAwCkAAAAnAAAA",
+              "ViewState": "AQIAACMAAAAAAAAAAAAwwCwAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T07:06:44.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBAAAAAJAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAADwvwsAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T07:05:38.449Z",
               "EditorCaption": ""
@@ -182,8 +179,7 @@
               "RelativeToolTip": "Migrations\\20241019005200_InitialCreate2.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T00:52:02.587Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T00:52:02.587Z"
             },
             {
               "$type": "Document",
@@ -195,8 +191,7 @@
               "RelativeToolTip": "Migrations\\ApiDbContextModelSnapshot.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T00:54:26.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T00:54:26.659Z"
             }
           ]
         }
