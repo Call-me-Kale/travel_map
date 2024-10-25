@@ -43,8 +43,9 @@ export const LogIn = () => {
 };
 
 const LogInContainer = styled.div`
-    height: 500px;
+    height: 610px;
     width: 400px;
+    margin-top: 100px;
 
     a {
         width: 100%;

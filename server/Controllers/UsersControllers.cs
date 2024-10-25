@@ -3,6 +3,9 @@ using server.Models;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace server.Controllers
 {
@@ -44,13 +47,46 @@ namespace server.Controllers
             return Ok(user);
         }
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(User user)
+        public async Task<ActionResult<User>> Register(server.Models.RegisterDto registerDto)
         {
+            if (string.IsNullOrEmpty(registerDto.Email) || string.IsNullOrEmpty(registerDto.Password) || string.IsNullOrEmpty(registerDto.Name))
+            {
+                return BadRequest("All fields (Name, Email, and Password) are required.");
+            }
+
+            var hashedPassword = HashPassword(registerDto.Password);
+
+            var user = new User
+            {
+                Name = registerDto.Name,
+                Password = hashedPassword,
+                Email = registerDto.Email,
+            };
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetByEmail), new { id = user.Email }, user);
         }
+        private string HashPassword(string password)
+        {
+            byte[] salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return hashed;
+        }
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)
         {

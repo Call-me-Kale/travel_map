@@ -14,6 +14,12 @@ interface Login {
     password: string;
 }
 
+interface Register {
+    name: string;
+    email: string;
+    password: string;
+}
+
 interface InitialStateInterface {
     user: User;
 }
@@ -46,13 +52,14 @@ export const postLogin = createAsyncThunk(
 
 export const postRegister = createAsyncThunk(
     "register",
-    async (payload: Login, {signal}) => {
+    async (payload: Register, {signal}) => {
         const source = axios.CancelToken.source();
         signal.addEventListener('abort', () => {
             source.cancel();
         });
 
         return axios.post(`http://localhost:5150/api/UsersControllers/register`, {
+            name: payload.name,
             email: payload.email,
             password: payload.password
         });

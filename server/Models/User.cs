@@ -9,6 +9,8 @@ namespace server.Models
         public string Password { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
 
+        public User() { }
+
         public User(string name, string password, string email)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -21,6 +23,13 @@ namespace server.Models
     {
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+    }
+
+    public class RegisterDto
+    {
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 
 }

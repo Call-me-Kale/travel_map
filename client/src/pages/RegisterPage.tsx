@@ -13,6 +13,7 @@ export const RegisterPage = () => {
 const StyledRegisterPage = styled.div`
     height: 100%;
     width: calc(100% - 280px);
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `;
