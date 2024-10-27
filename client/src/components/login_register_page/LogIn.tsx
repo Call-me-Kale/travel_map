@@ -1,15 +1,89 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
 import { useAppDispatch } from "../../store/hooks";
 import { postLogin } from "../../store/slices";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export const LogIn = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [errors ,setErrors] = useState({
+        emailError: false,
+        passwordError: false,
+    });
+
+    const [errorsActiveLabels ,setErrorsActiveLabels] = useState({
+        emailErrorLabel: 'Error',
+        passwordErrorLabel: 'Error',
+    });
+
+
+    const validationHandler = (type: string, data:string) => {
+
+        const allowedChars: string = 'QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuiopasdfghjklzxcvbnm€?/|[]{}-=_+1234567890!@#$%^&*()';
+        const mailMustHaveSymbols = '@.';
+        const min_length: number = 8;
+        const max_length: number = 32;
+
+        switch(type) {
+            case 'email':
+                if(!mailMustHaveSymbols.split('').every(char => data.includes(char))) {
+                    setErrors({
+                        ...errors,
+                        emailError: true
+                    });
+                    setErrorsActiveLabels({
+                        ...errorsActiveLabels,
+                        emailErrorLabel: 'Błędny adres e-mail'
+                    });
+                } else if(errors.emailError){
+                    setErrors({
+                        ...errors,
+                        emailError: false
+                    });
+                }
+                setEmail(data);
+                break;
+            case 'password':
+                if((data.length + 1) <= min_length || data.length >= max_length) {
+                    setErrors({
+                        ...errors,
+                        passwordError: true
+                    });
+                    setErrorsActiveLabels({
+                        ...errorsActiveLabels,
+                        passwordErrorLabel: 'Hasło powinna zawierać od 8 do 32 znaków'
+                    });
+                } else if(data.split('').some(char => !allowedChars.includes(char))) {
+                    setErrors({
+                        ...errors,
+                        passwordError: true
+                    });
+                    setErrorsActiveLabels({
+                        ...errorsActiveLabels,
+                        passwordErrorLabel: 'Hasło zawiera niedozwolone znaki'
+                    });
+                } else if(errors.passwordError){
+                    setErrors({
+                        ...errors,
+                        passwordError: false
+                    });
+                }
+                setPassword(data);
+                break;
+            default:
+                break;
+        }
+    }
+
     const dispatch = useAppDispatch();
     const logInHandler = () => {
-        dispatch(postLogin({email, password}));
+        if(!errors.emailError && !errors.passwordError) {
+            dispatch(postLogin({email, password}));
+        }
+        
     }
 
     return(
@@ -21,16 +95,31 @@ export const LogIn = () => {
                 <StyledTextField
                     required
                     id="outlined-required"
-                    label="Login"
+                    label="E-mail"
                     defaultValue=""
-                    onChange={(e:any) => setEmail(e.target.value)}
+                    onChange={(e:any) => validationHandler('email', e.target.value)}
+                    helperText={errors.emailError ? errorsActiveLabels.emailErrorLabel : ''}
+                    error={errors.emailError}
                 />
                 <StyledTextField
                     required
                     id="outlined-required"
-                    label="Password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="new-password"
+                    label="Hasło"
                     defaultValue=""
-                    onChange={(e:any) => setPassword(e.target.value)}
+                    onChange={(e:any) => validationHandler('password', e.target.value)}
+                    helperText={errors.passwordError ? errorsActiveLabels.passwordErrorLabel : ''}
+                    error={errors.passwordError}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton onClick={() => setShowPassword(!showPassword)}>
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
                 <StyledButton variant="contained" onClick={() => logInHandler()}>
                 Zaloguj
