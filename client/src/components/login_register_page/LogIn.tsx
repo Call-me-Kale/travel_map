@@ -124,6 +124,7 @@ export const LogIn = () => {
                 <StyledButton variant="contained" onClick={() => logInHandler()}>
                 Zaloguj
                 </StyledButton>
+                
             </InputsContainer>
                 <a>Odzyskaj hasło</a>
             <OtherContainer></OtherContainer>
@@ -177,4 +178,9 @@ const OtherContainer = styled.div`
     margin-top: 20px;
     margin-left: 10%;
     border-top: 1px solid gray;
+`;
+
+const StyledErrorText = styled.p`
+    font-size: 12px;
+    color: #d32f2f;
 `;

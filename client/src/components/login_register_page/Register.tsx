@@ -16,14 +16,16 @@ export const Register = () => {
         nameError: false,
         emailError: false,
         passwordError: false,
-        retryPasswordError: false
+        retryPasswordError: false,
+        registerError: false
     });
 
     const [errorsActiveLabels ,setErrorsActiveLabels] = useState({
         nameErrorLabel: 'Error',
         emailErrorLabel: 'Error',
         passwordErrorLabel: 'Error',
-        retryPasswordErrorLabel: 'Error'
+        retryPasswordErrorLabel: 'Error',
+        registerErrorLabel: 'Error'
     });
 
     const textFieldIds = {
@@ -33,10 +35,33 @@ export const Register = () => {
     const dispatch = useAppDispatch();
 
     const registerHandler = () => {
-        if(!errors.nameError && !errors.emailError && !errors.passwordError && !errors.retryPasswordError) {
+        if((password === '') || (email === '') || (name === '') || (retryPassword === '')) {
+            setErrors({
+                nameError: name === '' ? true : false,
+                emailError: email === '' ? true : false,
+                passwordError: password === '' ? true : false,
+                retryPasswordError: retryPassword === '' ? true : false,
+                registerError: true
+            });
+
+            setErrorsActiveLabels({
+                nameErrorLabel: name === '' ? 'Nazwa powinna zawierać od 8 do 32 znaków' : '',
+                emailErrorLabel: email === '' ? 'Błędny adres e-mail' : '',
+                passwordErrorLabel: password === '' ? 'Hasło powinno zawierać od 8 do 32 znaków' : '',
+                retryPasswordErrorLabel: retryPassword === '' ? 'Hasła nie są takie same' : '',
+                registerErrorLabel: 'Błędnie wprowadzono dane'
+            })
+        } else if(!errors.nameError && !errors.emailError && !errors.passwordError && !errors.retryPasswordError && !errors.registerError ) {
             dispatch(postRegister({name, email, password}));
         } else {
-
+            setErrors({
+                ...errors,
+                registerError: true
+            });
+            setErrorsActiveLabels({
+                ...errorsActiveLabels,
+                registerErrorLabel: 'Błędnie wprowadzono dane'
+            })
         }
     }
 
@@ -221,6 +246,10 @@ export const Register = () => {
                 <StyledButton variant="contained" onClick={() => registerHandler()}>
                 Stwórz
                 </StyledButton>
+                {
+                errors.registerError && 
+                <StyledErrorText>{errorsActiveLabels.registerErrorLabel}</StyledErrorText>
+                }
             </InputsContainer>
             <OtherContainer></OtherContainer>
         </RegisterContainer>
@@ -265,4 +294,9 @@ const OtherContainer = styled.div`
     margin-top: 20px;
     margin-left: 10%;
     border-top: 1px solid gray;
+`;
+
+const StyledErrorText = styled.p`
+    font-size: 12px;
+    color: #d32f2f;
 `;
