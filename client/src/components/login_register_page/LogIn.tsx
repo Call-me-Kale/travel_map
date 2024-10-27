@@ -12,11 +12,13 @@ export const LogIn = () => {
     const [errors ,setErrors] = useState({
         emailError: false,
         passwordError: false,
+        loginError: false
     });
 
     const [errorsActiveLabels ,setErrorsActiveLabels] = useState({
         emailErrorLabel: 'Error',
         passwordErrorLabel: 'Error',
+        loginErrorLabel: 'Error'
     });
 
 
@@ -80,8 +82,29 @@ export const LogIn = () => {
 
     const dispatch = useAppDispatch();
     const logInHandler = () => {
-        if(!errors.emailError && !errors.passwordError) {
+        if((password === '') || (email === '')) {
+            setErrors({
+                emailError: email === '' ? true : false,
+                passwordError: password === '' ? true : false,
+                loginError: true
+            });
+
+            setErrorsActiveLabels({
+                emailErrorLabel: email === '' ? 'Błędny adres e-mail' : '',
+                passwordErrorLabel: password === '' ? 'Hasło powinno zawierać od 8 do 32 znaków' : '',
+                loginErrorLabel: 'Błędnie wprowadzono dane'
+            })
+        } else if(!errors.emailError && !errors.passwordError) {
             dispatch(postLogin({email, password}));
+        } else {
+            setErrors({
+                ...errors,
+                loginError: true
+            });
+            setErrorsActiveLabels({
+                ...errorsActiveLabels,
+                loginErrorLabel: 'Błędnie wprowadzono dane'
+            })
         }
         
     }
@@ -124,9 +147,16 @@ export const LogIn = () => {
                 <StyledButton variant="contained" onClick={() => logInHandler()}>
                 Zaloguj
                 </StyledButton>
+                {
+                errors.loginError && 
+                <StyledErrorText>Błędnie wprowadzono dane</StyledErrorText>
+                }
                 
             </InputsContainer>
+            <AnchorTagContainer>
                 <a>Odzyskaj hasło</a>
+                <a href="/register">Zarejestrój się</a>
+            </AnchorTagContainer>
             <OtherContainer></OtherContainer>
         </LogInContainer>
     );
@@ -137,14 +167,6 @@ const LogInContainer = styled.div`
     width: 400px;
     margin-top: 100px;
 
-    a {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        color: #1976d2;
-        text-decoration: underline;
-        margin-top: 8px;
-    }
 `;
 
 const Header = styled.div`
@@ -178,6 +200,19 @@ const OtherContainer = styled.div`
     margin-top: 20px;
     margin-left: 10%;
     border-top: 1px solid gray;
+`;
+
+const AnchorTagContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+        color: #1976d2;
+        text-decoration: underline;
+        margin-top: 8px;
+    }
 `;
 
 const StyledErrorText = styled.p`

@@ -4,3 +4,4 @@ export * from './FliesPage';
 export * from './VisitedCountriesPage';
 export * from './LogInPage';
 export * from './RegisterPage';
+export * from './RetrivePasswordPage';
