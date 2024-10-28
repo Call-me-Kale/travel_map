@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server.Data;
 
@@ -10,9 +11,11 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241028085849_NewTablesv2")]
+    partial class NewTablesv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,10 +26,17 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Country", b =>
                 {
-                    b.Property<string>("CountryCode")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Continent")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CountryCode")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -34,15 +44,22 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("CountryCode");
+                    b.HasKey("Id");
 
                     b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("server.Models.Flight", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("FlightId")
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("From")
                         .IsRequired()
@@ -60,7 +77,7 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("FlightId");
+                    b.HasKey("Id");
 
                     b.ToTable("Flights");
                 });

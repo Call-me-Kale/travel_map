@@ -13,9 +13,9 @@ namespace server.Models
 
         public User(string name, string password, string email)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
-            Email = email ?? throw new ArgumentNullException(nameof(email));
+            this.Name = name;
+            this.Password = password;
+            this.Email = email;
         }
 
     }
