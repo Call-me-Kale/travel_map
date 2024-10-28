@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 
-export const RetrivePassword = () => {
+export const RetrivePasswordStep1 = () => {
 
     return(
         <StyledRetrivePassword>
