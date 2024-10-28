@@ -62,6 +62,8 @@ export const postRegister = createAsyncThunk(
             name: payload.name,
             email: payload.email,
             password: payload.password
+        }).catch(err => {
+            return err.status === 400 ? 400 : '';
         });
         
     }
@@ -85,7 +87,7 @@ const usersSlice = createSlice({
             console.log(payload);
         });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
-            console.log(payload);
+            console.log(payload); // zwraca 400
         });
     },
 
