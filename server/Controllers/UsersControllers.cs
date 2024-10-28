@@ -39,6 +39,18 @@ namespace server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login([FromBody] server.Models.LoginRequest request)
         {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest("All fields (Email, and Password) are required.");
+            }
+
+            var isEmailInUse = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if (isEmailInUse == null)
+            {
+                return BadRequest("User with this e-mail doesn't exist");
+            }
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
             if (user == null || user.Password != request.Password)
             {
@@ -54,6 +66,19 @@ namespace server.Controllers
                 return BadRequest("All fields (Name, Email, and Password) are required.");
             }
 
+            var isEmailInUse = await _context.Users.FirstOrDefaultAsync(u => u.Email == registerDto.Email);
+            var isNameInUse = await _context.Users.FirstOrDefaultAsync(u => u.Name == registerDto.Name);
+
+            if (isEmailInUse != null)
+            {
+                return BadRequest("User with this e-mail already exist");
+            }
+
+            if (isNameInUse != null)
+            {
+                return BadRequest("User with this name already exist");
+            }
+
             var hashedPassword = HashPassword(registerDto.Password);
 
             var user = new User
@@ -66,7 +91,7 @@ namespace server.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetByEmail), new { id = user.Email }, user);
+            return CreatedAtAction(nameof(GetByEmail), new { email = user.Email }, user);
         }
         private string HashPassword(string password)
         {
