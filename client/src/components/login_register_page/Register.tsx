@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { postRegister } from "../../store/slices";
+import { postRegister, changeRegistrationStatus } from "../../store/slices";
 import styled from "@emotion/styled";
 import { TextField, Button, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -33,7 +34,9 @@ export const Register = () => {
     }
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const specialErrorMessage = useAppSelector(state => state.userSlice.user.specialError);
+    const registrationStatus = useAppSelector(state => state.userSlice.user.registrationStatus);
 
     useEffect(() => {
         if(specialErrorMessage !== '') {
@@ -48,6 +51,13 @@ export const Register = () => {
             });
         }
     },[specialErrorMessage]);
+
+    useEffect(() => {
+        if(registrationStatus == 'succeeded') {
+            navigate('/');
+            dispatch(changeRegistrationStatus())
+        }
+    },[registrationStatus]);
 
     const registerHandler = () => {
         if((password === '') || (email === '') || (name === '') || (retryPassword === '')) {

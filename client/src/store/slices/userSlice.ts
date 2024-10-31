@@ -6,6 +6,7 @@ interface User {
     email: string;
     isLogged: boolean;
     specialError: string;
+    registrationStatus: string;
 }
 
 interface Login {
@@ -29,6 +30,7 @@ const initialState: InitialStateInterface = {
         email: 'guest@gmail.com',
         isLogged: false,
         specialError: '',
+        registrationStatus: ''
     },
 }
 
@@ -75,6 +77,10 @@ const usersSlice = createSlice({
             state.user.name = 'Guest';
             state.user.email = 'e@gmail.com';
             state.user.isLogged = false;
+        },
+
+        changeRegistrationStatus(state) {
+            state.user.registrationStatus = '';
         }
     },
     extraReducers(builder) {
@@ -88,6 +94,10 @@ const usersSlice = createSlice({
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
             if(payload && payload.status === 400) {
                 state.user.specialError = payload.response.data;
+                state.user.registrationStatus = 'failed';
+            } else if (payload.status == 201) {
+                console.log(payload);
+                state.user.registrationStatus = 'succeeded';
             }
         });
     },
@@ -95,4 +105,4 @@ const usersSlice = createSlice({
 })
 
 export default usersSlice.reducer;
-export const { logOut } = usersSlice.actions;
+export const { logOut, changeRegistrationStatus } = usersSlice.actions;
