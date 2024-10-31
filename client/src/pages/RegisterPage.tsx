@@ -1,4 +1,4 @@
-import { Register } from "../components/login_register_page";
+import { Register } from "../components/login_register_page"
 import styled from "@emotion/styled";
 
 export const RegisterPage = () => {

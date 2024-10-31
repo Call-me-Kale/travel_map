@@ -2,11 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface User {
-    id: number;
     name: string;
-    password: string;
     email: string;
     isLogged: boolean;
+    specialError: string;
 }
 
 interface Login {
@@ -26,11 +25,10 @@ interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
     user: {
-        id: 0,
         name: 'Guest',
-        password: 'admin',
         email: 'guest@gmail.com',
-        isLogged: true
+        isLogged: false,
+        specialError: '',
     },
 }
 
@@ -63,7 +61,7 @@ export const postRegister = createAsyncThunk(
             email: payload.email,
             password: payload.password
         }).catch(err => {
-            return err.status === 400 ? 400 : '';
+            return err;
         });
         
     }
@@ -74,20 +72,23 @@ const usersSlice = createSlice({
     initialState,
     reducers: {
         logOut(state) {
-            state.user.id = 0;
             state.user.name = 'Guest';
-            state.user.password = 'admin';
             state.user.email = 'e@gmail.com';
             state.user.isLogged = false;
         }
     },
     extraReducers(builder) {
         builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
-            state.user.isLogged = true;
-            console.log(payload);
+            if(payload.status === 200) {
+                state.user.isLogged = true;
+                state.user.email = payload.data.email;
+                state.user.name = payload.data.name;
+            }
         });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
-            console.log(payload); // zwraca 400
+            if(payload && payload.status === 400) {
+                state.user.specialError = payload.response.data;
+            }
         });
     },
 

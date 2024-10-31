@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { postRegister } from "../../store/slices";
 import styled from "@emotion/styled";
 import { TextField, Button, IconButton, InputAdornment } from "@mui/material";
@@ -33,6 +33,21 @@ export const Register = () => {
     }
 
     const dispatch = useAppDispatch();
+    const specialErrorMessage = useAppSelector(state => state.userSlice.user.specialError);
+
+    useEffect(() => {
+        if(specialErrorMessage !== '') {
+            setErrors({
+                ...errors,
+                registerError: true
+            });
+    
+            setErrorsActiveLabels({
+                ...errorsActiveLabels,
+                registerErrorLabel: specialErrorMessage
+            });
+        }
+    },[specialErrorMessage]);
 
     const registerHandler = () => {
         if((password === '') || (email === '') || (name === '') || (retryPassword === '')) {
@@ -51,8 +66,16 @@ export const Register = () => {
                 retryPasswordErrorLabel: retryPassword === '' ? 'Hasła nie są takie same' : '',
                 registerErrorLabel: 'Błędnie wprowadzono dane'
             })
-        } else if(!errors.nameError && !errors.emailError && !errors.passwordError && !errors.retryPasswordError && !errors.registerError ) {
+        } else if(!errors.nameError && !errors.emailError && !errors.passwordError && !errors.retryPasswordError ) {
             dispatch(postRegister({name, email, password}));
+            setErrors({
+                ...errors,
+                registerError: false,
+            });
+            setErrorsActiveLabels({
+                ...errorsActiveLabels,
+                registerErrorLabel: '',
+            })
         } else {
             setErrors({
                 ...errors,
@@ -258,13 +281,13 @@ export const Register = () => {
 
 
 const RegisterContainer = styled.div`
-    height: 500px;
+    height: 800px;
     width: 400px;
     margin-top: 100px;
 `;
 
 const Header = styled.div`
-    height: 15%;
+    height: 100px;
     width: 100%;
     display: grid;
     place-items: center;
@@ -272,7 +295,8 @@ const Header = styled.div`
 `;
 
 const InputsContainer = styled.div`
-    height: 350px;
+    min-height: 400px;
+    max-height: 500px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -289,7 +313,7 @@ const StyledButton = styled(Button)`
 `;
 
 const OtherContainer = styled.div`
-    height: 30%;
+    height: 100px;
     width: 80%;
     margin-top: 20px;
     margin-left: 10%;

@@ -44,19 +44,18 @@ namespace server.Controllers
                 return BadRequest("All fields (Email, and Password) are required.");
             }
 
-            var isEmailInUse = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
 
-            if (isEmailInUse == null)
+            if (user == null)
             {
                 return BadRequest("User with this e-mail doesn't exist");
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
-            if (user == null || user.Password != request.Password)
+            if (user == null || !VerifyPassword(request.Password, user.Password, user.Salt))
             {
                 return Unauthorized(); 
             }
-            return Ok(user);
+            return Ok(new { email = user.Email, name = user.Name});
         }
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(server.Models.RegisterDto registerDto)
@@ -79,21 +78,21 @@ namespace server.Controllers
                 return BadRequest("User with this name already exist");
             }
 
-            var hashedPassword = HashPassword(registerDto.Password);
+            var (hashedPassword, salt) = HashPassword(registerDto.Password);
 
-            var user = new User
-            {
-                Name = registerDto.Name,
-                Password = hashedPassword,
-                Email = registerDto.Email,
-            };
+            var user = new User(
+                name: registerDto.Name,
+                password: hashedPassword,
+                email: registerDto.Email,
+                salt: salt
+            );
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetByEmail), new { email = user.Email }, user);
         }
-        private string HashPassword(string password)
+        private (string hashedPassword, byte[] salt) HashPassword(string password)
         {
             byte[] salt = new byte[128 / 8];
             using (var rng = RandomNumberGenerator.Create())
@@ -101,16 +100,27 @@ namespace server.Controllers
                 rng.GetBytes(salt);
             }
 
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
 
-            return hashed;
+            return (hashedPassword, salt);
         }
 
+        private bool VerifyPassword(string enteredPassword, string storedHash, byte[] salt)
+        {
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: enteredPassword,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return hashedPassword == storedHash;
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)
