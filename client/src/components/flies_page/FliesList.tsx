@@ -1,4 +1,7 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
+import { FormControl, Checkbox } from "@mui/material";
+import { FilterAlt, FilterAltOff, ExpandLess, ExpandMore, North, South, Close } from '@mui/icons-material';
 import { Fly } from "./Fly";
 
 export interface Data {
@@ -76,7 +79,9 @@ export const FliesList = () => {
             to: '',
             duration: '',
         },
-    ] 
+    ];
+
+    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
     return(
         <>
@@ -85,11 +90,52 @@ export const FliesList = () => {
                 <SearchInputContainer>
                     <StyledInput type="text" placeholder="search..." />
                 </SearchInputContainer>
+                <GapFiller />
+                {isFilterOpen ? 
+                <FilterButtonContainerOpened >
+                    <FilterHeader>
+                        <FilterHeaderText>
+                            Opcje Filtrowania    
+                        </FilterHeaderText> 
+                        <CloseIconContainer onClick={() => setIsFilterOpen(false)}>
+                            <Close />
+                        </CloseIconContainer>                       
+                    </FilterHeader>
+                    <FilterOption>
+                        <North />
+                        <p>Sortuj Rosnąco</p>
+                    </FilterOption>
+                    <FilterOption>
+                        <South />
+                        <p>Sortuj Malejąco</p>
+                    </FilterOption>
+                    <FilterOption>
+                        <FilterAltOff />
+                        <p>Wyczyść Filtry</p>
+                    </FilterOption>
+                    <FilterCheckboxOption>
+                        <Checkbox defaultChecked/>
+                        <p>Filter</p>
+                    </FilterCheckboxOption>
+                    <FilterCheckboxOption>
+                        <Checkbox />
+                        <p>Wyczyść Filtry</p>
+                    </FilterCheckboxOption>
+                    <FilterCheckboxOption>
+                        <Checkbox />
+                        <p>Wyczyść Filtry</p>
+                    </FilterCheckboxOption>
+                </FilterButtonContainerOpened>
+                : 
+                <FilterButtonContainerClosed onClick={() => setIsFilterOpen(true)}>
+                    <StyledFilterAltIcon />
+                </FilterButtonContainerClosed>
+                }
             </ListHeader>
             <StyledFliesList>
                 {
-                    tempdata[0] && tempdata.map((data:any) => {
-                        return <Fly data={data}/>
+                    tempdata[0] && tempdata.map((data:any, key:any) => {
+                        return <Fly data={data} key={key}/>
                     })
                 }
             </StyledFliesList>
@@ -107,17 +153,99 @@ const Header = styled.h2`
 `;
 
 const ListHeader = styled.div`
-    height: 10%;
-    width: 95%;
+    height: 84px;
+    width: calc(90% - 10px);
     margin-left: 5%;
-    margin-top: 5%;
     display: flex;
     align-items: center;
+    position: relative;
 `;
 
 const SearchInputContainer = styled.div`
-    height: 50%;
+    height: 42px;
     width: 220px;
+`;
+
+const GapFiller = styled.div`
+    height: 100%;
+    width: calc(90% - 262px);
+`;
+
+const FilterButtonContainerClosed = styled.div`
+    height: 42px;
+    width: 42px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const FilterButtonContainerOpened = styled.div`
+    position: absolute;
+    top: 21px;
+    right: calc(10% - 10px);
+    height: 360px;
+    width: 200px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+`;
+
+const FilterHeader = styled.div`
+    height: 30px;
+    width: calc(100% - 10px);
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+`;
+
+const FilterHeaderText = styled.div`
+    width: calc(100% - 50px);
+    margin-top: 3px;
+`;
+
+const CloseIconContainer = styled.div`
+    height: 100%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    cursor: pointer; 
+`;
+
+
+const StyledFilterAltIcon = styled(FilterAlt)`
+    height: 50%;
+    color: #413d3d;
+`;
+
+const FilterOption = styled.div`
+    width: calc(100% - 10px);
+    margin-left: 10px;
+    margin-top: 20px;
+    height: 30px;  
+    display: flex;
+    align-items: center;
+    
+    p {
+        margin-left: 10px
+    }
+`;
+
+const FilterCheckboxOption = styled.div`
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 2px;
+    height: 30px;  
+    display: flex;
+    align-items: center;
+    
+    p {
+      margin-left: 1px;
+    
+    }
 `;
 
 const StyledInput = styled.input`
