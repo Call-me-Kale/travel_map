@@ -90,6 +90,9 @@ export const FliesList = () => {
                 <SearchInputContainer>
                     <StyledInput type="text" placeholder="search..." />
                 </SearchInputContainer>
+                <AddFlightContainer>
+                    <StyledAddFlightButton>+</StyledAddFlightButton>
+                </AddFlightContainer>
                 <GapFiller />
                 {isFilterOpen ? 
                 <FilterButtonContainerOpened >
@@ -166,9 +169,16 @@ const SearchInputContainer = styled.div`
     width: 220px;
 `;
 
+const AddFlightContainer = styled.div`
+    height: 42px;
+    width: 52px;
+    display: flex;
+    justify-content: end;
+`;
+
 const GapFiller = styled.div`
     height: 100%;
-    width: calc(90% - 262px);
+    width: calc(90% - 320px);
 `;
 
 const FilterButtonContainerClosed = styled.div`
@@ -180,12 +190,17 @@ const FilterButtonContainerClosed = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.5s;
+
+    &:hover {
+        scale: 1.05;
+    }
 `;
 
 const FilterButtonContainerOpened = styled.div`
     position: absolute;
     top: 21px;
-    right: calc(10% - 10px);
+    right: calc(10%);
     height: 360px;
     width: 200px; 
     border-radius: 8px;
@@ -257,7 +272,30 @@ const StyledInput = styled.input`
     outline: none;
     font-size: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.5s;
 
+    &:hover {
+        scale: 1.05;
+    }
+`;
+
+const StyledAddFlightButton = styled.button`
+    height: 100%;
+    width: calc(100% - 10px);
+    border-radius: 8px;
+    border: none;
+    font-size: 200%;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    background: #07e207;
+    font-weight: 300;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+        scale: 1.05;
+    }
 `;
 
 const StyledFliesList = styled.div`

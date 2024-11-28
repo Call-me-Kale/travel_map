@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Data } from './FliesList';
 import styled from "@emotion/styled";
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import { ArrowRightAlt, Edit, Delete } from '@mui/icons-material';
 
 interface DataI {
     data: Data;
@@ -18,7 +18,7 @@ export const Fly: FC<DataI> = ({data}) => {
                 <ContainersValue>{from}</ContainersValue>
             </FromAirport>
             <ArrowContainer>
-                <ArrowRightAltIcon />
+                <ArrowRightAlt />
             </ArrowContainer>
             <ToAirport>
                 <ConteinersHeader>To</ConteinersHeader>
@@ -32,6 +32,12 @@ export const Fly: FC<DataI> = ({data}) => {
                 <ConteinersHeader></ConteinersHeader>
                 <ContainersValue></ContainersValue>
             </Arrival>
+            <ButtonContainer>   
+                <Edit />
+            </ButtonContainer>
+            <ButtonContainer>
+                <Delete/>
+            </ButtonContainer>
         </StyledFly>
     );
 };
@@ -93,5 +99,32 @@ const ContainersValue = styled.div`
 
     p {
 
+    }
+`;
+
+const ButtonContainer = styled.div`
+    height: 100%;
+    width: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const Button = styled.button`
+    height: 42px;
+    width: 42px;  
+    border-radius: 8px;
+    border: none;
+    font-size: 200%;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    background: #07e207;
+    font-weight: 300;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+        scale: 1.05;
     }
 `;
