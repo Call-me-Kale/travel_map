@@ -185,7 +185,7 @@ const FilterButtonContainerClosed = styled.div`
     height: 42px;
     width: 42px; 
     border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgba(0, 0, 0, 0.29);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -271,7 +271,7 @@ const StyledInput = styled.input`
     border: none;
     outline: none;
     font-size: 90%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgba(0, 0, 0, 0.39);
     transition: 0.5s;
 
     &:hover {
@@ -286,7 +286,6 @@ const StyledAddFlightButton = styled.button`
     border: none;
     font-size: 200%;
     color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     background: #07e207;
     font-weight: 300;

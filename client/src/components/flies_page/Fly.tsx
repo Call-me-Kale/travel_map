@@ -32,11 +32,16 @@ export const Fly: FC<DataI> = ({data}) => {
                 <ConteinersHeader></ConteinersHeader>
                 <ContainersValue></ContainersValue>
             </Arrival>
+            <GapFiller />
             <ButtonContainer>   
-                <Edit />
+                <EditButton>
+                    <Edit />
+                </EditButton>
             </ButtonContainer>
             <ButtonContainer>
-                <Delete/>
+                <RemoveButton>
+                    <Delete/>
+                </RemoveButton>    
             </ButtonContainer>
         </StyledFly>
     );
@@ -110,16 +115,36 @@ const ButtonContainer = styled.div`
     justify-content: center;
 `;
 
-const Button = styled.button`
+const EditButton = styled.button`
     height: 42px;
     width: 42px;  
     border-radius: 8px;
     border: none;
     font-size: 200%;
     color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
-    background: #07e207;
+    background: #3362e4;
+    font-weight: 300;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+        scale: 1.05;
+    }
+`;
+const GapFiller = styled.div`
+    width: calc(20% - 144px);
+`;
+
+const RemoveButton = styled.button`
+    height: 42px;
+    width: 42px;  
+    border-radius: 8px;
+    border: none;
+    font-size: 200%;
+    color: white;
+    text-align: center;
+    background: #e22807;
     font-weight: 300;
     transition: 0.5s;
     cursor: pointer;
