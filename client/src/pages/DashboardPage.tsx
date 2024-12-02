@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Dashboard } from "../components/dashboard_page";
 
 
 export const DashboardPage = () => {
@@ -6,7 +7,7 @@ export const DashboardPage = () => {
 
     return(
         <StyledDashboardPage>
-            <></>
+            <Dashboard />
         </StyledDashboardPage>
     );
 };

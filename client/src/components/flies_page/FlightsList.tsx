@@ -147,13 +147,13 @@ export const FlightsList = () => {
                 </FilterButtonContainerClosed>
                 }
             </ListHeader>
-            <StyledFliesList>
+            <StyledFlightsList>
                 {
                     tempdata[0] && tempdata.map((data:any, key:any) => {
                         return <Flight data={data} key={key}/>
                     })
                 }
-            </StyledFliesList>
+            </StyledFlightsList>
         </>
     );
 };
@@ -309,7 +309,7 @@ const StyledAddFlightButton = styled.button`
     }
 `;
 
-const StyledFliesList = styled.div`
+const StyledFlightsList = styled.div`
       height: calc(80% - 140px);
       width: 90%;
       margin-left: calc(5% - 10px);
