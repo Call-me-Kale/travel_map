@@ -9,6 +9,7 @@ export interface Data {
     from: string;
     to: string;
     duration: string;
+    date: string;
 }
 
 export const FliesList = () => {
@@ -17,67 +18,78 @@ export const FliesList = () => {
             flynumber: '',
             from: 'CWA',
             to: 'VEZ',
-            duration: '',
+            duration: '12:34',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'UJG',
             to: 'NHG',
-            duration: '',
+            duration: '1:22',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'IJK',
             to: 'FBG',
-            duration: '',
+            duration: '0:44',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'TFG',
             to: 'UYH',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'WEF',
             to: 'WJY',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'DVG',
             to: 'UJG',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'THC',
             to: 'RHB',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'OKJ',
             to: 'GVF',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'FRH',
             to: 'JHF',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'DFC',
             to: '',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
         {
             flynumber: '',
             from: 'CCV',
             to: 'EFD',
-            duration: '',
+            duration: '20:43',
+            date: '12-10-2024',
         },
     ];
 

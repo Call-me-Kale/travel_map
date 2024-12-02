@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Data } from './FliesList';
 import styled from "@emotion/styled";
-import { ArrowRightAlt, Edit, Delete } from '@mui/icons-material';
+import { ArrowRightAlt, Edit, Delete, Today, Timer, FlightLand, FlightTakeoff } from '@mui/icons-material';
 
 interface DataI {
     data: Data;
@@ -9,29 +9,25 @@ interface DataI {
 
 export const Fly: FC<DataI> = ({data}) => {
 
-    const { flynumber, from, to, duration } = data;
+    const { flynumber, from, to, duration, date } = data;
 
     return(
         <StyledFly>
             <FromAirport>
-                <ConteinersHeader>From</ConteinersHeader>
-                <ContainersValue>{from}</ContainersValue>
+                <ContainersValue><FlightTakeoff /><p>{from}</p></ContainersValue>
             </FromAirport>
             <ArrowContainer>
                 <ArrowRightAlt />
             </ArrowContainer>
             <ToAirport>
-                <ConteinersHeader>To</ConteinersHeader>
-                <ContainersValue>{to}</ContainersValue>
+                <ContainersValue><span>{to}</span><FlightLand /></ContainersValue>
             </ToAirport>
-            <Departues>
-                <ConteinersHeader></ConteinersHeader>
-                <ContainersValue></ContainersValue>
-            </Departues>
-            <Arrival>
-                <ConteinersHeader></ConteinersHeader>
-                <ContainersValue></ContainersValue>
-            </Arrival>
+            <Duration>
+                <ContainersValue><Timer /><p>{duration}h</p></ContainersValue>
+            </Duration>
+            <Date>
+                <ContainersValue><Today /><p>{date}</p></ContainersValue>
+            </Date>
             <GapFiller />
             <ButtonContainer>   
                 <EditButton>
@@ -59,12 +55,16 @@ const StyledFly = styled.div`
 
 const FromAirport = styled.div`
     height: 100%;
-    width: 15%;
+    width: 120px;
+
+    div {
+        justify-content: end;
+    }
 `;
 
 const ArrowContainer = styled.div`
     height: 100%;
-    width: 20%;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,39 +72,38 @@ const ArrowContainer = styled.div`
 
 const ToAirport = styled.div`
     height: 100%;
-    width: 15%;
-`;
+    width: 120px;
 
-const Departues = styled.div`
-    height: 100%;
-    width: 15%;
-`;
-
-const Arrival = styled.div`
-    height: 100%;
-    width: 15%;
-`;
-
-const ConteinersHeader = styled.div`
-    height: 30%;
-    width: 100%;
-    color: gray;
-    display: flex;
-    align-items: end;
-    font-size: 80%;
-
-    p {
-
+    div {
+        justify-content: start;
     }
+`;
+
+const Duration = styled.div`
+    height: 100%;
+    width: 120px;
+`;
+
+const Date = styled.div`
+    height: 100%;
+    width: 220px;
 `;
 
 const ContainersValue = styled.div`
-    height: 70%;
+    height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     p {
-
+        margin-left: 10px;
     }
+
+    span {
+        margin-right: 10px;
+    }
+
 `;
 
 const ButtonContainer = styled.div`
@@ -121,9 +120,9 @@ const EditButton = styled.button`
     border-radius: 8px;
     border: none;
     font-size: 200%;
-    color: white;
     text-align: center;
-    background: #3362e4;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgba(0, 0, 0, 0.29);
+    background: #ffff;
     font-weight: 300;
     transition: 0.5s;
     cursor: pointer;
@@ -133,7 +132,7 @@ const EditButton = styled.button`
     }
 `;
 const GapFiller = styled.div`
-    width: calc(20% - 144px);
+    width: calc(100% - 820px);
 `;
 
 const RemoveButton = styled.button`
@@ -142,9 +141,9 @@ const RemoveButton = styled.button`
     border-radius: 8px;
     border: none;
     font-size: 200%;
-    color: white;
     text-align: center;
-    background: #e22807;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgba(0, 0, 0, 0.29);
+    background: #ffff;
     font-weight: 300;
     transition: 0.5s;
     cursor: pointer;
