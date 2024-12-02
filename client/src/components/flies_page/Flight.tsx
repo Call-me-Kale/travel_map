@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Data } from './FliesList';
+import { Data } from './FlightsList';
 import styled from "@emotion/styled";
 import { ArrowRightAlt, Edit, Delete, Today, Timer, FlightLand, FlightTakeoff } from '@mui/icons-material';
 
@@ -7,9 +7,9 @@ interface DataI {
     data: Data;
 }
 
-export const Fly: FC<DataI> = ({data}) => {
+export const Flight: FC<DataI> = ({data}) => {
 
-    const { flynumber, from, to, duration, date } = data;
+    const { flightnumber, from, to, duration, date } = data;
 
     return(
         <StyledFly>

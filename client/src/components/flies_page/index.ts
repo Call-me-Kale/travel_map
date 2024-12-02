@@ -1,2 +1,2 @@
-export * from './FliesList';
-export * from './Fly';
+export * from './FlightsList';
+export * from './Flight';

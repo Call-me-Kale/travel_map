@@ -2,90 +2,90 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { FormControl, Checkbox } from "@mui/material";
 import { FilterAlt, FilterAltOff, ExpandLess, ExpandMore, North, South, Close } from '@mui/icons-material';
-import { Fly } from "./Fly";
+import { Flight } from "./Flight";
 
 export interface Data {
-    flynumber: string;
+    flightnumber: string;
     from: string;
     to: string;
     duration: string;
     date: string;
 }
 
-export const FliesList = () => {
+export const FlightsList = () => {
     const tempdata: Data[] = [
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'CWA',
             to: 'VEZ',
             duration: '12:34',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'UJG',
             to: 'NHG',
             duration: '1:22',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'IJK',
             to: 'FBG',
             duration: '0:44',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'TFG',
             to: 'UYH',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'WEF',
             to: 'WJY',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'DVG',
             to: 'UJG',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'THC',
             to: 'RHB',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'OKJ',
             to: 'GVF',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'FRH',
             to: 'JHF',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'DFC',
             to: '',
             duration: '20:43',
             date: '12-10-2024',
         },
         {
-            flynumber: '',
+            flightnumber: '',
             from: 'CCV',
             to: 'EFD',
             duration: '20:43',
@@ -150,7 +150,7 @@ export const FliesList = () => {
             <StyledFliesList>
                 {
                     tempdata[0] && tempdata.map((data:any, key:any) => {
-                        return <Fly data={data} key={key}/>
+                        return <Flight data={data} key={key}/>
                     })
                 }
             </StyledFliesList>
