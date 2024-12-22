@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Graticule, Sphere } from "react-simple-maps";
 
 const geoUrl = "/countries.json";
 
@@ -10,16 +10,16 @@ export const MapChart = () => {
   const handleClick = (geo:any) => {
     let isClicked = false;
     clickedCountries.forEach((country:any) => {
-        if(geo.properties.name === country) {
+        if(geo.id === country) {
             isClicked = true;
         }
     });
 
     if(isClicked) {
-        let newClickedCountries:any = clickedCountries.filter((country:any) => country !== geo.properties.name);
+        let newClickedCountries:any = clickedCountries.filter((country:any) => country !== geo.id);
         setclickedCountries(newClickedCountries)
     } else {
-        setclickedCountries([...clickedCountries, geo.properties.name]);
+        setclickedCountries([...clickedCountries, geo.id]);
     }
   };
 
@@ -28,63 +28,65 @@ export const MapChart = () => {
       <Header>
         Where have you been?
       </Header>
-      <StyledComposableMap>
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
+      <VisitedCountriesCounter>
+        Visited: 13/196
+      </VisitedCountriesCounter>
+      <StyledComposableMap projectionConfig={{scale: 147}}>
+        <Sphere stroke="#0000001a" strokeWidth={1} id="1" fill="none" />
+          <Graticule stroke="#0000001a" step={[26, 29]} />
+            <Geographies geography={geoUrl}>
+              {({ geographies }) =>
+                geographies.map((geo) => {
 
-              const isClickedHandler:any = () => {
-                let isClickedCountry = false;
-                clickedCountries.forEach((country:string) => {
-                    if(country === geo.properties.name) {
-                        isClickedCountry = true;
-                    }
+                  const isClickedHandler:any = () => {
+                    let isClickedCountry = false;
+                    clickedCountries.forEach((country:string) => {
+                        if(country === geo.id) {
+                            isClickedCountry = true;
+                        }
+                    })
+                    return isClickedCountry;
+                    
+                  };
+                  let isClicked = false;
+
+                  if(clickedCountries[0] !== undefined) {
+                    isClicked = isClickedHandler();
+                  }
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      onClick={() => handleClick(geo)}
+                      fill={isClicked ? "#57c9f2" : "#D6D6DA"}
+                      style={{
+                        default: {
+                          stroke: "#FFFFFF",
+                          outline: "none",
+                        },
+                        hover: {
+                          fill: "#57c9f2",
+                          stroke: "#FFFFFF",
+                          outline: "none",
+                        },
+                        pressed: {
+                            outline: 'none'
+                        }
+                      }}
+                    />
+                  );
                 })
-                return isClickedCountry;
-                
-              };
-              let isClicked = false;
-
-              if(clickedCountries[0] !== undefined) {
-                isClicked = isClickedHandler();
               }
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onClick={() => handleClick(geo)}
-                  fill={isClicked ? "#57c9f2" : "#D6D6DA"}
-                  style={{
-                    default: {
-                      stroke: "#FFFFFF",
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#57c9f2",
-                      stroke: "#FFFFFF",
-                      outline: "none",
-                    },
-                    pressed: {
-                        outline: 'none'
-                    }
-                  }}
-                />
-              );
-            })
-          }
-        </Geographies>
+            </Geographies>
       </StyledComposableMap>
     </MapContainer>
   );
 };
 
 const MapContainer = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `;
 
 const Header = styled.h1`
@@ -95,7 +97,16 @@ const Header = styled.h1`
   justify-content: center;  
 `;
 
+const VisitedCountriesCounter = styled.h2`
+  height: 60px;
+  width: 100%;
+  text-align: center;
+`;
+
 const StyledComposableMap = styled(ComposableMap)`
-    height: 70%;  
-    margin-bottom: calc(30% - 120px);
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%); 
+  height: calc(100% - 180px);  
 `;

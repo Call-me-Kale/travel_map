@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { Country } from "./Country";
 import { Edit } from '@mui/icons-material';
@@ -9,6 +10,7 @@ export interface Data {
 }
 
 export const CountriesList = () => {
+    const [ isCreating, setIsCreating ] = useState<boolean>(false);
     const data: Data[] = [
         {
             name: 'Poland',
@@ -55,7 +57,12 @@ export const CountriesList = () => {
             img: './img/japan.jpeg',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
-    ]
+    ];
+
+    const AddCountryHandler = () => {
+        setIsCreating(false)
+    }
+
     return (
         <StyledCountryList>
             <Header>
@@ -65,11 +72,8 @@ export const CountriesList = () => {
                 <SearchInputContainer>
                     <StyledInput type="text" placeholder="search..." />
                 </SearchInputContainer>
-                <ButtonContainer>
+                <ButtonContainer onClick={() => setIsCreating(true)}>
                     <StyledAddCountryButton>+</StyledAddCountryButton>
-                </ButtonContainer>
-                <ButtonContainer>
-                    <StyledEditCountriesButton><Edit /></StyledEditCountriesButton>    
                 </ButtonContainer>
                 
             </ListHeader>
@@ -78,6 +82,37 @@ export const CountriesList = () => {
                     return <Country data={country} key={i}/>
                 })}
             </List>
+            { isCreating &&
+                <PopUpBackground>
+                    <PopUpContainer>
+                        <PopUpCloseIcon onClick={() => setIsCreating(false)}>X</PopUpCloseIcon>
+                        <PopUpHeader>Dodaj Nowy Kraj Do Listy Odwiedzonych</PopUpHeader>
+                        <CountrySelectionWrapper>
+                            <SectionHeader>Wybierz kraj</SectionHeader>
+                            <SelectContainer>
+                                <SelectCountryInput>
+                                    {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" }
+                                </SelectCountryInput>
+                            </SelectContainer>
+                        </CountrySelectionWrapper>
+                        <CountryImageWrapper>
+                            <SectionHeader>Dodaj zdjęcie</SectionHeader>
+                            <UploadImageContainer>
+                                <UploadImageInput type="file" />
+                            </UploadImageContainer>
+                        </CountryImageWrapper>   
+                        <CountryDescriptionWrapper>
+                            <SectionHeader>Wprowadź opis</SectionHeader>
+                            <TextAreaContainer>
+                                <StyledTextArea placeholder="Tekst..." />
+                            </TextAreaContainer>
+                        </CountryDescriptionWrapper>
+                        <CountryButtonContainer>
+                            <CountryButton onClick={() => AddCountryHandler()}>Dodaj</CountryButton>
+                        </CountryButtonContainer>
+                    </PopUpContainer>
+                </PopUpBackground>
+            }
         </StyledCountryList>
     );
 };
@@ -87,6 +122,7 @@ const StyledCountryList = styled.div`
     width: 100%;  
     overflow-x: hidden;
     overflow-y: hidden;
+    position: relative;
 `;
 
 const ListHeader = styled.div`
@@ -183,4 +219,128 @@ const Header = styled.div`
 
 const Text = styled.h2`
     font-size: 220%;
+`;
+
+const PopUpBackground = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0000001f;
+`;
+
+const PopUpContainer = styled.div`
+    position: relative;
+    height: 700px;
+    width: 600px;
+    background: white;
+    border-radius: 8px;
+`;
+
+const PopUpCloseIcon = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 62px;
+    width: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`;
+
+const PopUpHeader = styled.h4`
+    height: 110px;
+    width: 60%;
+    margin-left: 20%;
+    display: flex; 
+    align-items: end;
+    justify-content: center;
+    text-align: center;
+    font-size: 150%;
+`;
+
+const CountrySelectionWrapper = styled.div`
+    height: 80px;
+    width: 80%;
+    margin-left: 10%; 
+    margin-top: 40px;
+`;
+
+const SectionHeader = styled.div`
+    height: 30px;
+    width: 100%;
+`;
+
+const SelectContainer = styled.div`
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;  
+`;
+
+const SelectCountryInput = styled.select`
+    height: 40px;
+    width: 180px;
+    padding: 4px;
+`;
+
+const CountryImageWrapper = styled.div`
+    height: 50px;
+    width: 80%;
+    margin-left: 10%; 
+    margin-top: 40px;
+`;
+
+const UploadImageContainer = styled.div`
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;  
+`;
+
+const UploadImageInput = styled.input`
+    height: 40px;
+    width: 280px;
+    padding: 4px;
+`
+
+const CountryDescriptionWrapper = styled.div`
+    height: 200px;
+    width: 80%;
+    margin-left: 10%; 
+    margin-top: 40px;
+`;
+
+const TextAreaContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;  
+`;
+
+const StyledTextArea = styled.textarea`
+    height: 180px;
+    width: 280px;
+    padding: 4px;
+    resize: none;
+`;
+
+const CountryButtonContainer = styled.div`
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+`;
+
+const CountryButton = styled.button`
+    height: 30px;
+    width: 80px;
+    text-align: center;
 `;
