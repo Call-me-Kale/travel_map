@@ -4,16 +4,21 @@ import { Close, ArrowRightAlt } from '@mui/icons-material';
 
 type PopUpProps = {
     onClose?: () => void;  
+    mode: "add" | "edit";
   }
 
-export const PopUp:FC<PopUpProps> = ({ onClose }) => {
+export const PopUp:FC<PopUpProps> = ({ onClose, mode }) => {
 
     const ClosePopUpHandler = () => {
         onClose?.();
     };
 
-    const AddFlightHandler = () => {
-        
+    const AddEditFlightHandler = () => {
+        if(mode === 'add') {
+
+        } else if(mode === 'edit') {
+
+        }
         onClose?.();
     };
 
@@ -53,7 +58,7 @@ export const PopUp:FC<PopUpProps> = ({ onClose }) => {
                     </TimeRangeContainer>
                 </FlightDateWrapper>
                 <FlightButtonContainer>
-                    <FlightButton onClick={() => AddFlightHandler()}>Dodaj</FlightButton>
+                    <FlightButton onClick={() => AddEditFlightHandler()}>{mode === "add" ? 'Dodaj' : 'Edytuj'}</FlightButton>
                 </FlightButtonContainer>
             </PopUpContainer>
         </PopUpBackground>

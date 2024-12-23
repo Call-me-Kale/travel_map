@@ -156,7 +156,7 @@ export const FlightsList = () => {
                 }
             </StyledFlightsList>
             { isCreating &&
-                <PopUp onClose={() => setIsCreating(false)} />
+                <PopUp mode={'add'} onClose={() => setIsCreating(false)} />
             }
         </>
     );

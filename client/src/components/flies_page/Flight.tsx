@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Data } from './FlightsList';
 import styled from "@emotion/styled";
 import { ArrowRightAlt, Edit, Delete, Today, InsertInvitation, Timer, FlightLand, FlightTakeoff } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
+import { PopUp } from "./CreateEditPopUp";
 
 interface DataI {
     data: Data;
@@ -10,6 +11,7 @@ interface DataI {
 
 export const Flight: FC<DataI> = ({data}) => {
 
+    const [ isEditing, setIsEditing ] = useState(false);
     const { flightnumber, from, to, duration, date } = data;
 
     return(
@@ -32,7 +34,7 @@ export const Flight: FC<DataI> = ({data}) => {
             <GapFiller />
             <ButtonContainer>   
                 <EditButton>
-                    <Edit />
+                    <Edit onClick={() => setIsEditing(true)} />
                 </EditButton>
             </ButtonContainer>
             <ButtonContainer>
@@ -40,6 +42,7 @@ export const Flight: FC<DataI> = ({data}) => {
                     <Delete/>
                 </RemoveButton>    
             </ButtonContainer>
+            {isEditing && <PopUp mode={"edit"} onClose={() => setIsEditing(false)} />}
         </StyledFly>
     );
 };
