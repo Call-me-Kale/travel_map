@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { Country } from "./Country";
-import { Edit } from '@mui/icons-material';
+import { Edit, Close } from '@mui/icons-material';
 
 export interface Data {
     name: string;
@@ -85,7 +85,7 @@ export const CountriesList = () => {
             { isCreating &&
                 <PopUpBackground>
                     <PopUpContainer>
-                        <PopUpCloseIcon onClick={() => setIsCreating(false)}>X</PopUpCloseIcon>
+                        <PopUpCloseIcon><Close onClick={() => setIsCreating(false)} /></PopUpCloseIcon>
                         <PopUpHeader>Dodaj Nowy Kraj Do Listy Odwiedzonych</PopUpHeader>
                         <CountrySelectionWrapper>
                             <SectionHeader>Wybierz kraj</SectionHeader>
@@ -230,7 +230,7 @@ const PopUpBackground = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #0000001f;
+    background: #0000004b;
 `;
 
 const PopUpContainer = styled.div`
@@ -250,7 +250,12 @@ const PopUpCloseIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    
+
+    svg {
+        font-size: 30px;
+        cursor: pointer;
+    }
 `;
 
 const PopUpHeader = styled.h4`

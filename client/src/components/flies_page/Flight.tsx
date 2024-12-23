@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Data } from './FlightsList';
 import styled from "@emotion/styled";
-import { ArrowRightAlt, Edit, Delete, Today, Timer, FlightLand, FlightTakeoff } from '@mui/icons-material';
+import { ArrowRightAlt, Edit, Delete, Today, InsertInvitation, Timer, FlightLand, FlightTakeoff } from '@mui/icons-material';
+import Tooltip from '@mui/material/Tooltip';
 
 interface DataI {
     data: Data;
@@ -9,25 +10,28 @@ interface DataI {
 
 export const Flight: FC<DataI> = ({data}) => {
 
-    const { flightnumber, from, to, duration, date } = data;
+    const { flightnumber, from, to, duration, arrivalDate, departureDate } = data;
 
     return(
         <StyledFly>
             <FromAirport>
-                <ContainersValue><FlightTakeoff /><p>{from}</p></ContainersValue>
+                <ContainersValue><Tooltip title="flight from"><div><FlightTakeoff /><p>{from}</p></div></Tooltip></ContainersValue>
             </FromAirport>
             <ArrowContainer>
                 <ArrowRightAlt />
             </ArrowContainer>
             <ToAirport>
-                <ContainersValue><span>{to}</span><FlightLand /></ContainersValue>
+                <ContainersValue><Tooltip title="flight to"><div><span>{to}</span><FlightLand /></div></Tooltip></ContainersValue>
             </ToAirport>
-            <Duration>
-                <ContainersValue><Timer /><p>{duration}h</p></ContainersValue>
-            </Duration>
             <Date>
-                <ContainersValue><Today /><p>{date}</p></ContainersValue>
+                <ContainersValue><Tooltip title="departure date"><div><Today /><p>{departureDate}</p></div></Tooltip></ContainersValue>
             </Date>
+            <Date>
+                <ContainersValue><Tooltip title="arrival date"><div><InsertInvitation /><p>{arrivalDate}</p></div></Tooltip></ContainersValue>
+            </Date>
+            <Duration>
+                <ContainersValue><Tooltip title="flight duration"><div><Timer /><p>{duration}h</p></div></Tooltip></ContainersValue>
+            </Duration>
             <GapFiller />
             <ButtonContainer>   
                 <EditButton>
@@ -86,7 +90,7 @@ const Duration = styled.div`
 
 const Date = styled.div`
     height: 100%;
-    width: 220px;
+    width: 200px;
 `;
 
 const ContainersValue = styled.div`
@@ -96,13 +100,19 @@ const ContainersValue = styled.div`
     align-items: center;
     justify-content: center;
 
-    p {
-        margin-left: 10px;
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        p {
+            margin-left: 10px;
+        }
+
+        span {
+            margin-right: 10px;
+        }
     }
 
-    span {
-        margin-right: 10px;
-    }
 
 `;
 
@@ -132,7 +142,7 @@ const EditButton = styled.button`
     }
 `;
 const GapFiller = styled.div`
-    width: calc(100% - 820px);
+    width: calc(100% - 1000px);
 `;
 
 const RemoveButton = styled.button`
