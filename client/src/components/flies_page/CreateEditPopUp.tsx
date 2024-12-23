@@ -1,13 +1,15 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 import { Close, ArrowRightAlt } from '@mui/icons-material';
+import { Data } from "./";
 
 type PopUpProps = {
     onClose?: () => void;  
     mode: "add" | "edit";
+    data?: Data;
   }
 
-export const PopUp:FC<PopUpProps> = ({ onClose, mode }) => {
+export const PopUp:FC<PopUpProps> = ({ onClose, mode, data }) => {
 
     const ClosePopUpHandler = () => {
         onClose?.();
@@ -28,11 +30,11 @@ export const PopUp:FC<PopUpProps> = ({ onClose, mode }) => {
         <PopUpBackground>
             <PopUpContainer>
                 <PopUpCloseIcon><Close onClick={() => ClosePopUpHandler()}/></PopUpCloseIcon>
-                <PopUpHeader>Dodaj Nowy Lot</PopUpHeader>
+                <PopUpHeader>{mode === "edit" ? 'Edycja Lotu' : 'Dodaj Nowy Lot'}</PopUpHeader>
                 <FlightSelectionWrapper>
                     <SectionHeader>Wybierz skąd podróżowałeś</SectionHeader>
                     <SelectContainer>
-                        <FlightInput placeholder="wyszukaj lotnisko...">
+                        <FlightInput placeholder="wyszukaj lotnisko..." defaultValue={mode === 'edit' ? data?.from : ''} >
                             {/* {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" } */}
                         </FlightInput>
                     </SelectContainer>
@@ -40,21 +42,21 @@ export const PopUp:FC<PopUpProps> = ({ onClose, mode }) => {
                 <FlightSelectionWrapper>
                     <SectionHeader>Wybierz dokąd podróżowałeś</SectionHeader>
                     <SelectContainer>
-                        <FlightInput placeholder="wyszukaj lotnisko...">
+                        <FlightInput placeholder="wyszukaj lotnisko..." defaultValue={mode === 'edit' ? data?.to : ''} >
                             {/* {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" } */}
                         </FlightInput>
                     </SelectContainer>
                 </FlightSelectionWrapper>
                 <FlightDateWrapper>
                     <SectionHeader>Wybierz datę lotu</SectionHeader>
-                    <FlightInput type="date" />
+                    <FlightInput type="date" defaultValue={mode === 'edit' ? '' : ''} />
                 </FlightDateWrapper>
                 <FlightDateWrapper>
                     <SectionHeader>Wybierz godziny lotu</SectionHeader>
                     <TimeRangeContainer>
-                        <FlightInput type="time" />
+                        <FlightInput type="time" defaultValue={mode === 'edit' ? '' : ''} />
                         <ArrowRightAlt />
-                        <FlightInput type="time" />
+                        <FlightInput type="time" defaultValue={mode === 'edit' ? '' : ''} />
                     </TimeRangeContainer>
                 </FlightDateWrapper>
                 <FlightButtonContainer>

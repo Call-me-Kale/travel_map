@@ -5,7 +5,7 @@ import { ArrowRightAlt, Edit, Delete, Today, InsertInvitation, Timer, FlightLand
 import Tooltip from '@mui/material/Tooltip';
 import { PopUp } from "./CreateEditPopUp";
 
-interface DataI {
+export interface DataI {
     data: Data;
 }
 
@@ -42,7 +42,7 @@ export const Flight: FC<DataI> = ({data}) => {
                     <Delete/>
                 </RemoveButton>    
             </ButtonContainer>
-            {isEditing && <PopUp mode={"edit"} onClose={() => setIsEditing(false)} />}
+            {isEditing && <PopUp mode={"edit"} onClose={() => setIsEditing(false)} data={data} />}
         </StyledFly>
     );
 };
