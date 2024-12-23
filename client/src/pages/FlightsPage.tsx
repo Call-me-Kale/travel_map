@@ -13,6 +13,7 @@ export const FlightsPage = () => {
 };
 
 const StyledFlightsPage = styled.div`
+    position: relative;
     height: 100%;
     width: calc(100% - 280px);
 `;

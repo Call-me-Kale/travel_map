@@ -10,7 +10,7 @@ interface DataI {
 
 export const Flight: FC<DataI> = ({data}) => {
 
-    const { flightnumber, from, to, duration, arrivalDate, departureDate } = data;
+    const { flightnumber, from, to, duration, date } = data;
 
     return(
         <StyledFly>
@@ -24,13 +24,10 @@ export const Flight: FC<DataI> = ({data}) => {
                 <ContainersValue><Tooltip title="flight to"><div><span>{to}</span><FlightLand /></div></Tooltip></ContainersValue>
             </ToAirport>
             <Date>
-                <ContainersValue><Tooltip title="departure date"><div><Today /><p>{departureDate}</p></div></Tooltip></ContainersValue>
-            </Date>
-            <Date>
-                <ContainersValue><Tooltip title="arrival date"><div><InsertInvitation /><p>{arrivalDate}</p></div></Tooltip></ContainersValue>
+                <ContainersValue><Tooltip title="departure date"><div><Today /><p>{date}</p></div></Tooltip></ContainersValue>
             </Date>
             <Duration>
-                <ContainersValue><Tooltip title="flight duration"><div><Timer /><p>{duration}h</p></div></Tooltip></ContainersValue>
+                <ContainersValue><Tooltip title="flight duration"><div><Timer /><p>{duration}</p></div></Tooltip></ContainersValue>
             </Duration>
             <GapFiller />
             <ButtonContainer>   
@@ -85,7 +82,7 @@ const ToAirport = styled.div`
 
 const Duration = styled.div`
     height: 100%;
-    width: 120px;
+    width: 170px;
 `;
 
 const Date = styled.div`
@@ -142,7 +139,7 @@ const EditButton = styled.button`
     }
 `;
 const GapFiller = styled.div`
-    width: calc(100% - 1000px);
+    width: calc(100% - 850px);
 `;
 
 const RemoveButton = styled.button`

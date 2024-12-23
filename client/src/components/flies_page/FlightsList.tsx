@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
-import { FormControl, Checkbox } from "@mui/material";
-import { FilterAlt, FilterAltOff, ExpandLess, ExpandMore, North, South, Close } from '@mui/icons-material';
-import { Flight } from "./Flight";
+import { Checkbox } from "@mui/material";
+import { FilterAlt, FilterAltOff, North, South, Close, } from '@mui/icons-material';
+import { Flight, PopUp } from "./";
 
 export interface Data {
     flightnumber: string;
     from: string;
     to: string;
     duration: string;
-    departureDate: string;
-    arrivalDate: string;
+    date: string;
 }
 
 export const FlightsList = () => {
@@ -19,98 +18,83 @@ export const FlightsList = () => {
             flightnumber: '',
             from: 'CWA',
             to: 'VEZ',
-            duration: '12:34',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '12:34 - 13:43',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'UJG',
             to: 'NHG',
-            duration: '1:22',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '1:22 - 15:24',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'IJK',
             to: 'FBG',
-            duration: '0:44',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '0:44 - 21:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'TFG',
             to: 'UYH',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'WEF',
             to: 'WJY',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'DVG',
             to: 'UJG',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'THC',
             to: 'RHB',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'OKJ',
             to: 'GVF',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'FRH',
             to: 'JHF',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'DFC',
             to: '',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
         {
             flightnumber: '',
             from: 'CCV',
             to: 'EFD',
-            duration: '20:43',
-            departureDate: '12-10-2024',
-            arrivalDate: '12-10-2024'
+            duration: '20:43 - 23:22',
+            date: '12-10-2024',
         },
     ];
 
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
     const [isCreating, setIsCreating] = useState<boolean>(false);
-
-    const AddFlightHandler = () => {
-        setIsCreating(false);
-    };
 
     return(
         <>
@@ -172,41 +156,7 @@ export const FlightsList = () => {
                 }
             </StyledFlightsList>
             { isCreating &&
-                <PopUpBackground>
-                    <PopUpContainer>
-                        <PopUpCloseIcon><Close onClick={() => setIsCreating(false)} /></PopUpCloseIcon>
-                        <PopUpHeader>Dodaj Nowy Lot</PopUpHeader>
-                        <FlightSelectionWrapper>
-                            <SectionHeader>Wybierz skąd podróżowałeś</SectionHeader>
-                            <SelectContainer>
-                                <FlightInput placeholder="wyszukaj lotnisko...">
-                                    {/* {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" } */}
-                                </FlightInput>
-                            </SelectContainer>
-                        </FlightSelectionWrapper>
-                        <FlightSelectionWrapper>
-                            <SectionHeader>Wybierz dokąd podróżowałeś</SectionHeader>
-                            <SelectContainer>
-                                <FlightInput placeholder="wyszukaj lotnisko...">
-                                    {/* {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" } */}
-                                </FlightInput>
-                            </SelectContainer>
-                        </FlightSelectionWrapper>
-                        <FlightDateWrapper>
-                            <SectionHeader>Wybierz datę odlotu</SectionHeader>
-                            <FlightInput type="date" />
-                            <FlightInput type="time" />
-                        </FlightDateWrapper>
-                        <FlightDateWrapper>
-                            <SectionHeader>Wybierz datę przylotu</SectionHeader>
-                            <FlightInput type="date" />
-                            <FlightInput type="time" />
-                        </FlightDateWrapper>
-                        <FlightButtonContainer>
-                            <FlightButton onClick={() => AddFlightHandler()}>Dodaj</FlightButton>
-                        </FlightButtonContainer>
-                    </PopUpContainer>
-                </PopUpBackground>
+                <PopUp onClose={() => setIsCreating(false)} />
             }
         </>
     );
@@ -368,104 +318,4 @@ const StyledFlightsList = styled.div`
       width: 90%;
       margin-left: calc(5% - 10px);
       overflow-y: auto;
-`;
-
-const PopUpBackground = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0000004b;
-`;
-
-const PopUpContainer = styled.div`
-    position: relative;
-    height: 700px;
-    width: 600px;
-    background: white;
-    border-radius: 8px;
-`;
-
-const PopUpCloseIcon = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 62px;
-    width: 62px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-
-    svg {
-        font-size: 30px;
-        cursor: pointer;
-    }
-`;
-
-const PopUpHeader = styled.h4`
-    height: 80px;
-    width: 60%;
-    margin-left: 20%;
-    display: flex; 
-    align-items: end;
-    justify-content: center;
-    text-align: center;
-    font-size: 150%;
-`;
-
-const FlightSelectionWrapper = styled.div`
-    height: 80px;
-    width: 80%;
-    margin-left: 10%; 
-    margin-top: 40px;
-`;
-
-const SectionHeader = styled.div`
-    height: 30px;
-    width: 100%;
-`;
-
-const SelectContainer = styled.div`
-    height: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;  
-`;
-
-const FlightInput = styled.input`
-    height: 40px;
-    width: 180px;
-    padding: 4px;
-`;
-
-
-const FlightButtonContainer = styled.div`
-    height: 120px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-`;
-
-const FlightButton = styled.button`
-    height: 30px;
-    width: 80px;
-    text-align: center;
-`;
-
-const FlightDateWrapper = styled.div`
-    height: 80px;
-    width: 80%;
-    margin-left: 10%; 
-    margin-top: 40px;
-
-    input[type="date"] {
-        margin-right: 20px;
-    }
 `;
