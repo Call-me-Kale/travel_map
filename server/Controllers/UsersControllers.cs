@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
+using ResetPasswordRequest = server.Models.ResetPasswordRequest;
+using ForgotPasswordRequest = server.Models.ForgotPasswordRequest;
 
 namespace server.Controllers
 {
@@ -20,15 +24,15 @@ namespace server.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetAll()
         {
             return await _context.Users.ToListAsync();
         }
+
         [HttpGet("{email}")]
         public async Task<ActionResult<User>> GetByEmail(string email)
-        { 
+        {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
@@ -36,6 +40,7 @@ namespace server.Controllers
             }
             return user;
         }
+
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login([FromBody] server.Models.LoginRequest request)
         {
@@ -51,16 +56,20 @@ namespace server.Controllers
                 return BadRequest("User with this e-mail doesn't exist");
             }
 
-            if (user == null || !VerifyPassword(request.Password, user.Password, user.Salt))
+            if (!VerifyPassword(request.Password, user.Password, user.Salt))
             {
-                return Unauthorized(); 
+                return Unauthorized();
             }
-            return Ok(new { email = user.Email, name = user.Name});
+
+            return Ok(new { email = user.Email, name = user.Name });
         }
+
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(server.Models.RegisterDto registerDto)
         {
-            if (string.IsNullOrEmpty(registerDto.Email) || string.IsNullOrEmpty(registerDto.Password) || string.IsNullOrEmpty(registerDto.Name))
+            if (string.IsNullOrEmpty(registerDto.Email)
+                || string.IsNullOrEmpty(registerDto.Password)
+                || string.IsNullOrEmpty(registerDto.Name))
             {
                 return BadRequest("All fields (Name, Email, and Password) are required.");
             }
@@ -92,6 +101,7 @@ namespace server.Controllers
 
             return CreatedAtAction(nameof(GetByEmail), new { email = user.Email }, user);
         }
+
         private (string hashedPassword, byte[] salt) HashPassword(string password)
         {
             byte[] salt = new byte[128 / 8];
@@ -122,6 +132,93 @@ namespace server.Controllers
             return hashedPassword == storedHash;
         }
 
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Email))
+                return BadRequest("Email is required.");
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user == null)
+                return NotFound("User with this email does not exist.");
+
+            var resetToken = Guid.NewGuid().ToString();
+            user.ResetPasswordToken = resetToken;
+            user.ResetPasswordTokenExpires = DateTime.UtcNow.AddMinutes(5);
+
+            await _context.SaveChangesAsync();
+
+            try
+            {
+                // Zamień "yourdomain.pl" na swój frontend czy link do resetu
+                var resetUrl = $"https://yourdomain.pl/reset-password?token={resetToken}";
+
+                var subject = "Resetowanie hasła";
+                var body = $"Aby zresetować hasło kliknij w poniższy link:\n{resetUrl}";
+
+                var smtpHost = "smtp.mailersend.net";
+                var smtpPort = 587;
+                var smtpUsername = "MS_GxLZ1O@trial-351ndgwxkr54zqx8.mlsender.net";
+                var smtpPassword = "mssp.C7B8z0c.o65qngk8yxwgwr12.1pRS9Om";
+
+                using (var smtpClient = new SmtpClient(smtpHost, smtpPort))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+
+                    var mailMessage = new MailMessage
+                    {
+                        // 'From' musi być domeną/adresem zweryfikowanym w MailerSend
+                        From = new MailAddress("trial-351ndgwxkr54zqx8.mlsender.net", "Twoja Aplikacja"),
+                        Subject = subject,
+                        Body = body,
+                        IsBodyHtml = false
+                    };
+
+                    mailMessage.To.Add(user.Email);
+                    await smtpClient.SendMailAsync(mailMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Błąd wysyłania emaila: " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error sending email.");
+            }
+
+            return Ok("Email with instructions has been sent (if user exists).");
+        }
+
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Token) || string.IsNullOrEmpty(request.NewPassword))
+                return BadRequest("Token and new password are required.");
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.ResetPasswordToken == request.Token);
+            if (user == null)
+            {
+                return BadRequest("Invalid token.");
+            }
+
+            if (user.ResetPasswordTokenExpires < DateTime.UtcNow)
+            {
+                return BadRequest("Token has expired.");
+            }
+
+            var (hashedPassword, salt) = HashPassword(request.NewPassword);
+            user.Password = hashedPassword;
+            user.Salt = salt;
+
+            user.ResetPasswordToken = null;
+            user.ResetPasswordTokenExpires = null;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Password has been reset successfully.");
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)
         {
@@ -138,7 +235,7 @@ namespace server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(!_context.Users.Any(e => e.Id == id))
+                if (!_context.Users.Any(e => e.Id == id))
                 {
                     return NotFound();
                 }
@@ -149,6 +246,7 @@ namespace server.Controllers
             }
             return NoContent();
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

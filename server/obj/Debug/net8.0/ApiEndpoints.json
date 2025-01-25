@@ -124,6 +124,22 @@
   },
   {
     "ContainingType": "server.Controllers.UsersControllers",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/UsersControllers/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Models.ForgotPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UsersControllers",
     "Method": "Login",
     "RelativePath": "api/UsersControllers/login",
     "HttpMethod": "POST",
@@ -173,5 +189,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "server.Controllers.UsersControllers",
+    "Method": "ResetPassword",
+    "RelativePath": "api/UsersControllers/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Models.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

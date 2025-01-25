@@ -4,6 +4,7 @@ import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
 import { useAppDispatch } from "../../store/hooks";
 import { postLogin } from "../../store/slices";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
     const [email, setEmail] = useState<string>('');
@@ -20,6 +21,8 @@ export const LogIn = () => {
         passwordErrorLabel: 'Error',
         loginErrorLabel: 'Error'
     });
+
+    const navigate = useNavigate();
 
 
     const validationHandler = (type: string, data:string) => {
@@ -154,7 +157,7 @@ export const LogIn = () => {
                 
             </InputsContainer>
             <AnchorTagContainer>
-                <a>Odzyskaj hasło</a>
+                <a onClick={() => navigate('/retrive_password')}>Odzyskaj hasło</a>
                 <a href="/register">Zarejestrój się</a>
             </AnchorTagContainer>
             <OtherContainer></OtherContainer>
@@ -212,6 +215,7 @@ const AnchorTagContainer = styled.div`
         color: #1976d2;
         text-decoration: underline;
         margin-top: 8px;
+        cursor: pointer;
     }
 `;
 

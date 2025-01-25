@@ -1,5 +1,5 @@
 export * from './LogIn';
 export * from './Register';
-export * from './RetrivePasswordStep1';
-export * from './RetrivePasswordStep2';
+export * from './RetrivePassword';
+export * from './RetrivePasswordSuccess';
 export * from './RetrivePasswordStep3';
