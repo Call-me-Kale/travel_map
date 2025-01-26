@@ -136,7 +136,7 @@ namespace server.Controllers
         }
 
 
-        [HttpPost("forgot-password")]
+        [HttpPost("forgot_password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
         {
             if (string.IsNullOrEmpty(request.Email))
@@ -154,7 +154,7 @@ namespace server.Controllers
 
             try
             {
-                var resetUrl = $"http://localhost:3000/reset-password?token={resetToken}";
+                var resetUrl = $"http://localhost:3000/reset_password?token={resetToken}";
 
                 var subject = "Resetowanie hasła";
                 var body = $"Aby zresetować hasło, kliknij w poniższy link:\n{resetUrl}";
@@ -194,7 +194,7 @@ namespace server.Controllers
         }
 
 
-        [HttpPost("reset-password")]
+        [HttpPost("reset_password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
         {
             if (string.IsNullOrEmpty(request.Token) || string.IsNullOrEmpty(request.NewPassword))

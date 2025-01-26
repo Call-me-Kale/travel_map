@@ -20,6 +20,15 @@ interface Register {
     password: string;
 }
 
+interface ForgotPassword {
+    email: string
+}
+
+interface NewPassword {
+    token: string,
+    new_password: string
+}
+
 interface InitialStateInterface {
     user: User;
 }
@@ -67,7 +76,41 @@ export const postRegister = createAsyncThunk(
         });
         
     }
-)
+);
+
+
+export const postForgotPassword = createAsyncThunk(
+    "forgotPassword",
+    async (payload: ForgotPassword, {signal}) => {
+        const source = axios.CancelToken.source();
+        signal.addEventListener('abort', () => {
+            source.cancel();
+        });
+
+        return axios.post(`http://localhost:5150/api/UsersControllers/forgot_password`, {
+            email: payload.email,
+        }).catch(err => {
+            return err;
+        });
+    }
+);
+
+export const postNewPassword = createAsyncThunk(
+    "newPassword",
+    async (payload: NewPassword, {signal}) => {
+        const source = axios.CancelToken.source();
+        signal.addEventListener('abort', () => {
+            source.cancel();
+        });
+
+        return axios.post(`http://localhost:5150/api/UsersControllers/reset_password`, {
+            token: payload.token,
+            new_password: payload.new_password
+        }).catch(err => {
+            return err;
+        });
+    }
+);
 
 const usersSlice = createSlice({
     name: 'usersSlice',
@@ -95,9 +138,24 @@ const usersSlice = createSlice({
             if(payload && payload.status === 400) {
                 state.user.specialError = payload.response.data;
                 state.user.registrationStatus = 'failed';
-            } else if (payload.status == 201) {
-                console.log(payload);
+            } else if (payload.status === 201) {
                 state.user.registrationStatus = 'succeeded';
+            }
+        });
+        builder.addCase(postForgotPassword.fulfilled, (state, {payload}:any) => {
+            if(payload && payload.status === 400) {
+                state.user.specialError = payload.response.data;
+                //state.user.registrationStatus = 'failed';
+            } else if (payload.status === 201) {
+                //state.user.registrationStatus = 'succeeded';
+            }
+        });
+        builder.addCase(postNewPassword.fulfilled, (state, {payload}:any) => {
+            if(payload && payload.status === 400) {
+                state.user.specialError = payload.response.data;
+                //state.user.registrationStatus = 'failed';
+            } else if (payload.status === 201) {
+                //state.user.registrationStatus = 'succeeded';
             }
         });
     },

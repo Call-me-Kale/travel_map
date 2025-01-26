@@ -125,7 +125,7 @@
   {
     "ContainingType": "server.Controllers.UsersControllers",
     "Method": "ForgotPassword",
-    "RelativePath": "api/UsersControllers/forgot-password",
+    "RelativePath": "api/UsersControllers/forgot_password",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -193,7 +193,7 @@
   {
     "ContainingType": "server.Controllers.UsersControllers",
     "Method": "ResetPassword",
-    "RelativePath": "api/UsersControllers/reset-password",
+    "RelativePath": "api/UsersControllers/reset_password",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

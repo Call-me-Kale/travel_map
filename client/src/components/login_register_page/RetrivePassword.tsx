@@ -1,23 +1,22 @@
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { postRegister, changeRegistrationStatus } from "../../store/slices";
-import { TextField, Button, IconButton, InputAdornment } from "@mui/material";
+import { useAppDispatch } from "../../store/hooks";
+import { postForgotPassword } from "../../store/slices";
+import { TextField, Button } from "@mui/material";
 
 export const RetrivePassword = () => {
     const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
     const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
     const [isFormError, setIsFormError] = useState<boolean>(false);
-
+    
+    const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
     const validationHandler = (data:string) => {
 
         const mailMustHaveSymbols = '@.';
-        const min_length: number = 8;
-        const max_length: number = 32;
 
         if(!mailMustHaveSymbols.split('').every(char => data.includes(char))) {
             setIsEmailValid(false)
@@ -34,7 +33,7 @@ export const RetrivePassword = () => {
                 setIsFormError(false);
             }
             navigate('/retrive_password_success');
-            //reszta kodu 
+            dispatch(postForgotPassword({email})) 
         } else {
             setIsFormError(true);
         }
@@ -62,6 +61,9 @@ const StyledRetrivePassword = styled.div`
     height: 800px;
     width: 400px;
     margin-top: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `;
 
 const StyledTextField = styled(TextField)`

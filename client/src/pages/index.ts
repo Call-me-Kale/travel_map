@@ -6,3 +6,4 @@ export * from './LogInPage';
 export * from './RegisterPage';
 export * from './RetrivePasswordPage';
 export * from './RetrivePasswordSuccessPage';
+export * from './ResetPasswordPage';
