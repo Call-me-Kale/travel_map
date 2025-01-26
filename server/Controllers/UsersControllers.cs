@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
-using System.Text;
+using server.Settings;
+using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
 using ResetPasswordRequest = server.Models.ResetPasswordRequest;
@@ -18,10 +19,12 @@ namespace server.Controllers
     public class UsersControllers : ControllerBase
     {
         private readonly ApiDbContext _context;
+        private readonly MailSettings _mailSettings;
 
-        public UsersControllers(ApiDbContext context)
+        public UsersControllers(ApiDbContext context, IOptions<MailSettings> mailSettings)
         {
             _context = context;
+            _mailSettings = mailSettings.Value;
         }
 
         [HttpGet]
@@ -151,16 +154,17 @@ namespace server.Controllers
 
             try
             {
-                // Zamień "yourdomain.pl" na swój frontend czy link do resetu
-                var resetUrl = $"https://yourdomain.pl/reset-password?token={resetToken}";
+                var resetUrl = $"http://localhost:3000/reset-password?token={resetToken}";
 
                 var subject = "Resetowanie hasła";
-                var body = $"Aby zresetować hasło kliknij w poniższy link:\n{resetUrl}";
+                var body = $"Aby zresetować hasło, kliknij w poniższy link:\n{resetUrl}";
 
-                var smtpHost = "smtp.mailersend.net";
-                var smtpPort = 587;
-                var smtpUsername = "MS_GxLZ1O@trial-351ndgwxkr54zqx8.mlsender.net";
-                var smtpPassword = "mssp.C7B8z0c.o65qngk8yxwgwr12.1pRS9Om";
+                var smtpHost = _mailSettings.Host;
+                var smtpPort = _mailSettings.Port;
+                var smtpUsername = _mailSettings.Username;
+                var smtpPassword = _mailSettings.Password;
+                var fromAddress = _mailSettings.FromAddress;
+                var fromName = _mailSettings.FromName;
 
                 using (var smtpClient = new SmtpClient(smtpHost, smtpPort))
                 {
@@ -169,14 +173,14 @@ namespace server.Controllers
 
                     var mailMessage = new MailMessage
                     {
-                        // 'From' musi być domeną/adresem zweryfikowanym w MailerSend
-                        From = new MailAddress("trial-351ndgwxkr54zqx8.mlsender.net", "Twoja Aplikacja"),
+                        From = new MailAddress(fromAddress, fromName),
                         Subject = subject,
                         Body = body,
                         IsBodyHtml = false
                     };
 
                     mailMessage.To.Add(user.Email);
+
                     await smtpClient.SendMailAsync(mailMessage);
                 }
             }
