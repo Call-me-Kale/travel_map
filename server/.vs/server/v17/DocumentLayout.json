@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250127144119_UserUpdatev2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250127144119_UserUpdatev2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\settings\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pioko\\documents\\github\\travel_map\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -98,24 +98,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20250127144119_UserUpdatev2.cs",
-              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250127144119_UserUpdatev2.cs",
-              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs",
-              "RelativeToolTip": "Migrations\\20250127144119_UserUpdatev2.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T14:41:19.143Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -123,20 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAACABAAAAAAAAAAAAAOkAAAAKAAAAAAAAAA==",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-01-26T14:53:34.278Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MailSettings.cs",
               "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Settings\\MailSettings.cs",
               "RelativeDocumentMoniker": "Settings\\MailSettings.cs",
@@ -161,20 +135,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UsersControllers.cs",
               "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersControllers.cs",
               "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeToolTip": "Controllers\\UsersControllers.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAUwEcAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAowEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T07:06:44.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -205,14 +179,53 @@
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAkwCEAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T07:05:38.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAACABAAAAAAAAAAAAAOkAAAAKAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-01-26T14:53:34.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T06:21:48.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20250127144119_UserUpdatev2.cs",
+              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250127144119_UserUpdatev2.cs",
+              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250127144119_UserUpdatev2.cs",
+              "RelativeToolTip": "Migrations\\20250127144119_UserUpdatev2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T14:41:19.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Flight.cs",
               "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Models\\Flight.cs",
               "RelativeDocumentMoniker": "Models\\Flight.cs",
@@ -234,19 +247,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-10-13T06:41:35.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\pioko\\Documents\\GitHub\\travel_map\\server\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T06:21:48.451Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",

@@ -29,6 +29,11 @@ namespace server.Models
         public string Password { get; set; } = string.Empty;
     }
 
+    public class LoginByTokenRequest
+    {
+        public string Token { get; set; } = string.Empty;
+    }
+
     public class RegisterDto
     {
         public string Email { get; set; } = string.Empty;

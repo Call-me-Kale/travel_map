@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface User {
-    userData: any;
     isAuthenticated: boolean;
+    token: string;
     specialError: string;
     registrationStatus: string;
 }
@@ -11,6 +11,10 @@ interface User {
 interface Login {
     email: string;
     password: string;
+}
+
+interface LoginByToken {
+    token: string;
 }
 
 interface Register {
@@ -34,8 +38,8 @@ interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
     user: {
-        userData: {},
         isAuthenticated: false,
+        token: '',
         specialError: '',
         registrationStatus: ''
     },
@@ -53,6 +57,21 @@ export const postLogin = createAsyncThunk(
             email: payload.email,
             password: payload.password
         });
+        
+    }
+)
+
+export const postLoginByToken = createAsyncThunk(
+    "loginByToken",
+    async (payload: LoginByToken, {signal}) => {
+        const source = axios.CancelToken.source();
+        signal.addEventListener('abort', () => {
+            source.cancel();
+        });
+
+        return axios.post(`http://localhost:5150/api/UsersControllers/login_by_token`, {
+            token: payload.token
+        }).catch(err => err);
         
     }
 )
@@ -116,8 +135,9 @@ const usersSlice = createSlice({
     initialState,
     reducers: {
         logOut(state) {
-            state.user.userData = {};
+            state.user.token = '';
             state.user.isAuthenticated = false;
+            sessionStorage.removeItem('token');
         },
 
         changeRegistrationStatus(state) {
@@ -128,9 +148,13 @@ const usersSlice = createSlice({
         builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
             if(payload.status === 200) {
                 state.user.isAuthenticated = true;
-                state.user.userData = payload.data.userData;
+                state.user.token = payload.data.token;
                 sessionStorage.setItem("token", payload.data.token);
             }
+        });
+        builder.addCase(postLoginByToken.fulfilled, (state, {payload}: any) => {
+            state.user.isAuthenticated = true;
+            state.user.token = payload.data.token;
         });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
             if(payload && payload.status === 400) {

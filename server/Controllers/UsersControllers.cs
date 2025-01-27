@@ -46,7 +46,7 @@ namespace server.Controllers
             }
             return user;
         }
-
+        
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login([FromBody] server.Models.LoginRequest request)
         {
@@ -69,13 +69,38 @@ namespace server.Controllers
 
             var token = Guid.NewGuid().ToString();
 
-            user.SessionToken = Guid.NewGuid().ToString();
-            user.TokenExpiresAt = DateTime.UtcNow.AddMinutes(15);
+
+
+            user.SessionToken = token;
+            user.TokenExpiresAt = DateTime.UtcNow.AddHours(1);
 
             _context.Users.Update(user);
             _context.SaveChanges();
 
             return Ok(new { token = token, userData = "" });
+        }
+
+        [HttpPost("login_by_token")]
+        public async Task<ActionResult<User>> LoginByToken([FromBody] server.Models.LoginByTokenRequest request)
+        {
+            if (string.IsNullOrEmpty(request.Token))
+            {
+                return BadRequest("Field Token is required.");
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.SessionToken == request.Token);
+
+            if (user == null)
+            {
+                return BadRequest("User with this token doesn't exist");
+            }
+
+            if (user.TokenExpiresAt < DateTime.UtcNow)
+            {
+                return BadRequest("Token has expired");
+            }
+
+            return Ok(new { token = request.Token, userData = "" });
         }
 
         [HttpPost("register")]

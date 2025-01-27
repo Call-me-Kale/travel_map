@@ -166,6 +166,32 @@
   },
   {
     "ContainingType": "server.Controllers.UsersControllers",
+    "Method": "LoginByToken",
+    "RelativePath": "api/UsersControllers/login_by_token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Models.LoginByTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "server.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "server.Controllers.UsersControllers",
     "Method": "Register",
     "RelativePath": "api/UsersControllers/register",
     "HttpMethod": "POST",
