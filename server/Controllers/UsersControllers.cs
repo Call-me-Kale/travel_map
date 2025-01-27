@@ -2,7 +2,6 @@
 using server.Models;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using server.Settings;
@@ -11,6 +10,12 @@ using System.Net;
 using System.Net.Mail;
 using ResetPasswordRequest = server.Models.ResetPasswordRequest;
 using ForgotPasswordRequest = server.Models.ForgotPasswordRequest;
+
+// Dodatkowe usingi do wysyłki przez MailerSend
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using Newtonsoft.Json; // jeśli używasz Newtonsoft.Json
 
 namespace server.Controllers
 {
@@ -105,6 +110,9 @@ namespace server.Controllers
             return CreatedAtAction(nameof(GetByEmail), new { email = user.Email }, user);
         }
 
+        /// <summary>
+        /// Funkcja haszująca hasło z użyciem PBKDF2.
+        /// </summary>
         private (string hashedPassword, byte[] salt) HashPassword(string password)
         {
             byte[] salt = new byte[128 / 8];
@@ -123,6 +131,9 @@ namespace server.Controllers
             return (hashedPassword, salt);
         }
 
+        /// <summary>
+        /// Funkcja weryfikująca poprawność hasła.
+        /// </summary>
         private bool VerifyPassword(string enteredPassword, string storedHash, byte[] salt)
         {
             string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
@@ -146,53 +157,79 @@ namespace server.Controllers
             if (user == null)
                 return NotFound("User with this email does not exist.");
 
+            // Generujemy token
             var resetToken = Guid.NewGuid().ToString();
             user.ResetPasswordToken = resetToken;
             user.ResetPasswordTokenExpires = DateTime.UtcNow.AddMinutes(5);
 
             await _context.SaveChangesAsync();
 
+            // Przygotowanie treści maila
+            var resetUrl = $"http://localhost:3000/reset_password?token={resetToken}";
+            var subject = "Resetowanie hasła";
+            var body = $"Aby zresetować hasło, kliknij w poniższy link:\n{resetUrl}";
+
+            // Dane z appsettings (MailSettings)
+            var fromAddress = _mailSettings.FromAddress;
+            var fromName = _mailSettings.FromName;
+            var mailerSendApiKey = _mailSettings.MailerSendApiKey; // Twój klucz API MailerSend
+
             try
             {
-                var resetUrl = $"http://localhost:3000/reset_password?token={resetToken}";
-
-                var subject = "Resetowanie hasła";
-                var body = $"Aby zresetować hasło, kliknij w poniższy link:\n{resetUrl}";
-
-                var smtpHost = _mailSettings.Host;
-                var smtpPort = _mailSettings.Port;
-                var smtpUsername = _mailSettings.Username;
-                var smtpPassword = _mailSettings.Password;
-                var fromAddress = _mailSettings.FromAddress;
-                var fromName = _mailSettings.FromName;
-
-                using (var smtpClient = new SmtpClient(smtpHost, smtpPort))
+                // Wysyłka za pomocą MailerSend (REST API)
+                using (var httpClient = new HttpClient())
                 {
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+                    // Ustawiamy nagłówek autoryzacji
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", mailerSendApiKey);
 
-                    var mailMessage = new MailMessage
+                    // Tworzymy obiekt JSON (zgodny z dokumentacją MailerSend)
+                    var emailData = new
                     {
-                        From = new MailAddress(fromAddress, fromName),
-                        Subject = subject,
-                        Body = body,
-                        IsBodyHtml = false
+                        from = new
+                        {
+                            email = fromAddress,
+                            name = fromName
+                        },
+                        to = new[]
+                        {
+                            new
+                            {
+                                email = user.Email,
+                                name = user.Name ?? ""
+                            }
+                        },
+                        subject = subject,
+                        text = body,
+                        // W prosty sposób zamieniamy znaki nowej linii na <br> w treści HTML
+                        html = $"<p>{body.Replace("\n", "<br>")}</p>"
                     };
 
-                    mailMessage.To.Add(user.Email);
+                    // Serializujemy do JSON
+                    var jsonBody = JsonConvert.SerializeObject(emailData);
 
-                    await smtpClient.SendMailAsync(mailMessage);
+                    // Zawartość żądania
+                    var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+                    // Endpoint MailerSend do wysyłania e-maili
+                    var response = await httpClient.PostAsync("https://api.mailersend.com/v1/email", content);
+
+                    // Sprawdzamy odpowiedź
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var responseError = await response.Content.ReadAsStringAsync();
+                        // Możesz zwrócić błąd, jeśli wysyłanie się nie powiedzie
+                        return StatusCode((int)response.StatusCode, $"Błąd wysyłania emaila przez MailerSend: {responseError}");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Błąd wysyłania emaila: " + ex.Message);
+                Console.WriteLine("Błąd wysyłania emaila (MailerSend): " + ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending email.");
             }
 
             return Ok("Email with instructions has been sent (if user exists).");
         }
-
 
         [HttpPost("reset_password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)

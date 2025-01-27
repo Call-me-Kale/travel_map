@@ -6,7 +6,7 @@ export const RetrivePasswordSuccess = () => {
     const navigate = useNavigate();
 
     const redirectHandler = () => {
-        navigate('/');
+        navigate('/login');
     }
 
     return(

@@ -220,3 +220,4 @@ C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\refint\s
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\server.pdb
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\server.genruntimeconfig.cache
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\ref\server.dll
+C:\Users\pioko\Documents\GitHub\travel_map\server\bin\Debug\net8.0\Newtonsoft.Json.dll

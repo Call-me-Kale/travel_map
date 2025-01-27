@@ -158,7 +158,7 @@ export const LogIn = () => {
             </InputsContainer>
             <AnchorTagContainer>
                 <a onClick={() => navigate('/retrive_password')}>Odzyskaj hasło</a>
-                <a href="/register">Zarejestrój się</a>
+                <a href="/register">Zarejestruj się</a>
             </AnchorTagContainer>
             <OtherContainer></OtherContainer>
         </LogInContainer>
