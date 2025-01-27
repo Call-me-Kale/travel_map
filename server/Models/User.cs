@@ -11,6 +11,8 @@ namespace server.Models
         public string Email { get; set; } = string.Empty;
         public string? ResetPasswordToken { get; set; }
         public DateTime? ResetPasswordTokenExpires { get; set; }
+        public string? SessionToken { get; set; }
+        public DateTime? TokenExpiresAt { get; set; }
 
         public User(string name, string password, string email, byte[] salt)
         {

@@ -5,7 +5,7 @@ import { logOut } from "../store/slices";
 
 export const NavBar = () => {
     const dispatch = useAppDispatch();
-    const isLogged = useAppSelector(state => state.userSlice.user.isLogged);
+    const isLogged = useAppSelector(state => state.userSlice.user.isAuthenticated);
 
     return(
         <StyledNavBar>

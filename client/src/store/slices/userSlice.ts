@@ -2,9 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface User {
-    name: string;
-    email: string;
-    isLogged: boolean;
+    userData: any;
+    isAuthenticated: boolean;
     specialError: string;
     registrationStatus: string;
 }
@@ -35,9 +34,8 @@ interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
     user: {
-        name: 'Guest',
-        email: 'guest@gmail.com',
-        isLogged: false,
+        userData: {},
+        isAuthenticated: false,
         specialError: '',
         registrationStatus: ''
     },
@@ -102,10 +100,11 @@ export const postNewPassword = createAsyncThunk(
         signal.addEventListener('abort', () => {
             source.cancel();
         });
-
+        console.log(payload.token)
+        console.log(payload.new_password)
         return axios.post(`http://localhost:5150/api/UsersControllers/reset_password`, {
             token: payload.token,
-            new_password: payload.new_password
+            newPassword: payload.new_password
         }).catch(err => {
             return err;
         });
@@ -117,9 +116,8 @@ const usersSlice = createSlice({
     initialState,
     reducers: {
         logOut(state) {
-            state.user.name = 'Guest';
-            state.user.email = 'e@gmail.com';
-            state.user.isLogged = false;
+            state.user.userData = {};
+            state.user.isAuthenticated = false;
         },
 
         changeRegistrationStatus(state) {
@@ -129,9 +127,9 @@ const usersSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(postLogin.fulfilled, (state, {payload}:any) => {
             if(payload.status === 200) {
-                state.user.isLogged = true;
-                state.user.email = payload.data.email;
-                state.user.name = payload.data.name;
+                state.user.isAuthenticated = true;
+                state.user.userData = payload.data.userData;
+                sessionStorage.setItem("token", payload.data.token);
             }
         });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {

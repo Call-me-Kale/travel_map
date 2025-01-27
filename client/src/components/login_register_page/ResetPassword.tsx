@@ -39,17 +39,17 @@ export const ResetPassword = () => {
     }
 
     const sendNewPasswordHandler = () => {
-        if(!isPasswordValid && token) {
-            setIsFormError(true);
+        if(isPasswordValid && token) {
             dispatch(postNewPassword({token: token, new_password: newPassword}))
+            navigate('/login');
         } else {
-            navigate('/');
+            setIsFormError(true);
         }
     }
 
     return(
         <StyledRetrivePassword>
-            <h3>Podaj Email do resetu hasła.</h3>
+            <h3>Podaj Nowe hasło.</h3>
             <StyledTextField
                     required
                     id="outlined-required"
