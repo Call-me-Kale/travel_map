@@ -318,4 +318,9 @@ const StyledFlightsList = styled.div`
       width: 90%;
       margin-left: calc(5% - 10px);
       overflow-y: auto;
+
+      @media screen and (max-width: 1100px) {
+        display: flex;
+        flex-wrap: wrap;
+      }
 `;

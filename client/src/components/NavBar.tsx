@@ -31,7 +31,7 @@ export const NavBar = () => {
     return(
         <StyledNavBar>
             <Header>
-                <h1>MyTravel</h1>
+                <NavLink to='/'>MyTravel</NavLink>
             </Header>
             <NavLinkContainer>
                 <NavLink to='/'>Strona Główna</NavLink>
@@ -157,10 +157,11 @@ const Header = styled.div`
     color: white;
     font-size: 160%;
 
-    h1 {
+    a {
         color: white;
         font-size: 130%;
         cursor: pointer;
+        text-decoration: none;
     }
 
     @media screen and (max-width: 1100px) {
