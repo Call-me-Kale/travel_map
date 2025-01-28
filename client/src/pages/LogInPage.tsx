@@ -16,4 +16,9 @@ const StyledLogInPage = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    @media screen and (max-width: 1100px) {
+        height: calc(100% - 100px);
+        width: 100%;
+    }
 `;

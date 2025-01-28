@@ -29,7 +29,7 @@ export const MapChart = () => {
         Where have you been?
       </Header>
       <VisitedCountriesCounter>
-        Visited: 13/196
+        {/* Visited: 13/196 */}
       </VisitedCountriesCounter>
       <StyledComposableMap projectionConfig={{scale: 147}}>
         <Sphere stroke="#0000001a" strokeWidth={1} id="1" fill="none" />
@@ -108,5 +108,15 @@ const StyledComposableMap = styled(ComposableMap)`
   top: 120px;
   left: 50%;
   transform: translateX(-50%); 
-  height: calc(100% - 180px);  
+  height: calc(100% - 180px); 
+  display: flex;
+  justify-content: center; 
+
+  @media screen and (max-width: 1300px){
+    height: calc(100% - 310px); 
+  } 
+
+  @media screen and (max-width: 700px){
+    height: calc(100% - 410px); 
+  } 
 `;
