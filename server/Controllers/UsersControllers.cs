@@ -77,7 +77,7 @@ namespace server.Controllers
             _context.Users.Update(user);
             _context.SaveChanges();
 
-            return Ok(new { token = token, userData = "" });
+            return Ok(new { token = token, userData = new { id = user.Id } });
         }
 
         [HttpPost("login_by_token")]
@@ -100,7 +100,7 @@ namespace server.Controllers
                 return BadRequest("Token has expired");
             }
 
-            return Ok(new { token = request.Token, userData = "" });
+            return Ok(new { token = request.Token, userData = new { id = user.Id } });
         }
 
         [HttpPost("register")]

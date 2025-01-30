@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { RetrivePasswordSuccess } from "../components/login_register_page";
 
 export const RetrivePasswordSuccessPage = () => {
-
+    
     return(
         <StyledRetrivePasswordSuccessPage>
             <RetrivePasswordSuccess />

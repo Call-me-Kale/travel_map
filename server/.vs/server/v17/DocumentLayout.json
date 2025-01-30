@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\controllers\\countriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:controllers\\countriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\models\\countrycard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:models\\countrycard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:controllers\\userscontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\models\\countrycard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:models\\countrycard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\controllers\\flightscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,10 +79,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250129235011_CountriesDatabaseUpdate2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -89,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\settings\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:settings\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE75BBA8-A40E-48BD-A0E5-F445B1969FC8}|server.csproj|c:\\users\\pikostecki\\documents\\github\\travel_map\\server\\server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -133,7 +133,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -141,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "20250130005147_CountryCardTableSetUpp3.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250130005147_CountryCardTableSetUpp3.cs",
               "RelativeDocumentMoniker": "Migrations\\20250130005147_CountryCardTableSetUpp3.cs",
@@ -154,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "20250130004654_CountryCardTableSetUpp2.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250130004654_CountryCardTableSetUpp2.cs",
               "RelativeDocumentMoniker": "Migrations\\20250130004654_CountryCardTableSetUpp2.cs",
@@ -167,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "20250130004455_CountryCardTableSetUpp.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250130004455_CountryCardTableSetUpp.cs",
               "RelativeDocumentMoniker": "Migrations\\20250130004455_CountryCardTableSetUpp.cs",
@@ -180,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CountryCard.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\CountryCard.cs",
               "RelativeDocumentMoniker": "Models\\CountryCard.cs",
@@ -193,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "20250129235311_CountriesDatabaseUpdate5.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250129235311_CountriesDatabaseUpdate5.cs",
               "RelativeDocumentMoniker": "Migrations\\20250129235311_CountriesDatabaseUpdate5.cs",
@@ -206,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "20250129235233_CountriesDatabaseUpdate4.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250129235233_CountriesDatabaseUpdate4.cs",
               "RelativeDocumentMoniker": "Migrations\\20250129235233_CountriesDatabaseUpdate4.cs",
@@ -219,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "20250129235152_CountriesDatabaseUpdate3.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250129235152_CountriesDatabaseUpdate3.cs",
               "RelativeDocumentMoniker": "Migrations\\20250129235152_CountriesDatabaseUpdate3.cs",
@@ -232,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "20250129235011_CountriesDatabaseUpdate2.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20250129235011_CountriesDatabaseUpdate2.cs",
               "RelativeDocumentMoniker": "Migrations\\20250129235011_CountriesDatabaseUpdate2.cs",
@@ -245,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Country.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\Country.cs",
               "RelativeDocumentMoniker": "Models\\Country.cs",
@@ -258,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -271,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -284,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "MailSettings.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Settings\\MailSettings.cs",
               "RelativeDocumentMoniker": "Settings\\MailSettings.cs",
@@ -296,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "20241014083459_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\20241014083459_InitialCreate.cs",
               "RelativeDocumentMoniker": "Migrations\\20241014083459_InitialCreate.cs",
@@ -309,13 +309,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UsersControllers.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersControllers.cs",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\UsersControllers.cs",
               "RelativeToolTip": "Controllers\\UsersControllers.cs",
-              "ViewState": "AQIAAPQAAAAAAAAAAAAYwBABAAAAAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAIwGUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T07:06:44.779Z",
               "EditorCaption": ""
@@ -334,20 +334,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CountriesController.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\CountriesController.cs",
               "RelativeDocumentMoniker": "Controllers\\CountriesController.cs",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\CountriesController.cs",
               "RelativeToolTip": "Controllers\\CountriesController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAwwCkAAAAoAAAA",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAuwCkAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-28T08:12:19.118Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -360,19 +360,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 3,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
               "ToolTip": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAACABAAAAAAAAAAAAAOkAAAAKAAAAAAAAAA==",
+              "ViewState": "AQIAAP8AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-26T14:53:34.278Z"
+              "WhenOpened": "2025-01-26T14:53:34.278Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -396,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Flight.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Models\\Flight.cs",
               "RelativeDocumentMoniker": "Models\\Flight.cs",
@@ -421,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ApiDbContext.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Data\\ApiDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApiDbContext.cs",
@@ -446,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "server.csproj",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\server.csproj",
               "RelativeDocumentMoniker": "server.csproj",
@@ -459,7 +460,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "FlightsController.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Controllers\\FlightsController.cs",
               "RelativeDocumentMoniker": "Controllers\\FlightsController.cs",
@@ -520,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "ApiDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\pikostecki\\Documents\\GitHub\\travel_map\\server\\Migrations\\ApiDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Migrations\\ApiDbContextModelSnapshot.cs",

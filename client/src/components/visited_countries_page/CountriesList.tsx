@@ -1,66 +1,43 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useAppSelector } from "../../store/hooks";
 import styled from "@emotion/styled";
 import { Country } from "./Country";
 import { Edit, Close } from '@mui/icons-material';
+import { useAppDispatch } from "../../store/hooks";
+import { getUserCards, postCountryCard } from "../../store/slices";
+import { CountryCard } from "../../store/slices";
 
 export interface Data {
-    name: string;
-    img: string;
-    description: string;
+    cardDescription: string;
+    countryName: string;
+    id: number;
+    userId: number;
 }
 
 export const CountriesList = () => {
     const [ isCreating, setIsCreating ] = useState<boolean>(false);
-    const data: Data[] = [
-        {
-            name: 'Poland',
-            img: './img/poland.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Italy',
-            img: './img/italy.jpg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/japan.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/japanpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/japan.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './impan.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/japan.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/jap',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-            name: 'Japan',
-            img: './img/japan.jpeg',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-    ];
+    const [ newCardDescription, setNewCardDescription ] = useState<string>("");
+    const [ isSearching, setIsSearching ] = useState<boolean>(false);
+    const [ searchValue, setSearchValue ] = useState<string>('');
+    const selectedValue = useRef<HTMLSelectElement>(null);
+    const userId = useAppSelector((state) => state.userSlice.user.userData.id);
+    const data = useAppSelector((state) => state.countryCardsSlice.countryCards);
+    let filteredData: CountryCard[] = [];
+    const countries = useAppSelector((state) => state.countryCardsSlice.countries);
+    const dispatch = useAppDispatch();
 
     const AddCountryHandler = () => {
-        setIsCreating(false)
+        dispatch(postCountryCard({userId, cardDescription: newCardDescription, countryName: selectedValue.current!.value}));
+        setIsCreating(false);
+        window.location.reload();
+    }
+
+    filteredData = data.filter((card) => card.countryName.toLowerCase().includes(searchValue.toLowerCase()));
+
+    const SearchHandler = () => {
+        setIsSearching(true);
+        
+        
     }
 
     return (
@@ -70,18 +47,21 @@ export const CountriesList = () => {
             </Header>
             <ListHeader>
                 <SearchInputContainer>
-                    <StyledInput type="text" placeholder="search..." />
+                    <StyledInput onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="search..." />
                 </SearchInputContainer>
                 <ButtonContainer onClick={() => setIsCreating(true)}>
                     <StyledAddCountryButton>+</StyledAddCountryButton>
                 </ButtonContainer>
                 
             </ListHeader>
-            <List>
-                {data.map((country, i) => {
-                    return <Country data={country} key={i}/>
-                })}
-            </List>
+
+                <List>
+                    {filteredData.map((country, i) => {
+                        return <Country data={country} key={i}/>
+                    })}
+                </List>
+
+
             { isCreating &&
                 <PopUpBackground>
                     <PopUpContainer>
@@ -90,8 +70,8 @@ export const CountriesList = () => {
                         <CountrySelectionWrapper>
                             <SectionHeader>Wybierz kraj</SectionHeader>
                             <SelectContainer>
-                                <SelectCountryInput>
-                                    {data ? data.map(country => <option value={country.name}>{country.name}</option>) : "" }
+                                <SelectCountryInput ref={selectedValue} defaultValue={"Afganistan"}>
+                                    {countries ? countries.map((country, i) => <option value={country.name_pl} key={i}>{country.name_pl}</option>) : "" }
                                 </SelectCountryInput>
                             </SelectContainer>
                         </CountrySelectionWrapper>
@@ -104,7 +84,7 @@ export const CountriesList = () => {
                         <CountryDescriptionWrapper>
                             <SectionHeader>Wprowadź opis</SectionHeader>
                             <TextAreaContainer>
-                                <StyledTextArea placeholder="Tekst..." />
+                                <StyledTextArea onChange={(e) => setNewCardDescription(e.target.value)} placeholder="Tekst..." />
                             </TextAreaContainer>
                         </CountryDescriptionWrapper>
                         <CountryButtonContainer>
@@ -200,7 +180,7 @@ const StyledEditCountriesButton = styled.button`
 `;
 
 const List = styled.div`
-    height: calc(100% - 140px);
+    height: calc(100% - 240px);
     width: 95%;
     margin-left: 5%;  
     display: flex;

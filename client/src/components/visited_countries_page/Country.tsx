@@ -1,21 +1,31 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { Data } from "./CountriesList";
+import { changeLastOpenedCountryCard } from "../../store/slices";
+import { useAppDispatch } from "../../store/hooks";
 import styled from "@emotion/styled";
 const polandIMG = require('./img/poland.jpeg');
-const italyIMG = require('./img/italy.jpg');
-const japanIMG = require('./img/japan.jpeg');
+
 
 interface DataI {
     data: Data
 }
 
 export const Country:FC<DataI> = ({data}) => {
-    const {name, img, description} = data;
+    const {cardDescription, countryName, id, userId} = data;
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const redirectHandler = () => {
+        dispatch(changeLastOpenedCountryCard({userId: userId, id: id, countryName: countryName, cardDescription: cardDescription}));
+        navigate(`/visited_countries/${id}`)
+    }
+
     return (
-        <StyledCountry>
-            <ImageContainer src={img === './img/japan.jpeg' ? japanIMG : polandIMG} alt="country image" />
-            <CountryNameContainer>{name}</CountryNameContainer>
-            <DescriptionContainer><p>{description}</p></DescriptionContainer>
+        <StyledCountry onClick={() => redirectHandler()}>
+            <ImageContainer src={polandIMG} alt="country image" />
+            <CountryNameContainer>{countryName}</CountryNameContainer>
+            <DescriptionContainer><p>{cardDescription}</p></DescriptionContainer>
         </StyledCountry>
     );
 };

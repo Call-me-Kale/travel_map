@@ -4,13 +4,20 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { postLoginByToken } from "./store/slices";
 import { NavBar } from "./components";
-import { MainPage, DashboardPage, FlightsPage, VisitedCoutriesPage, LogInPage, RegisterPage,  RetrivePasswordPage, RetrivePasswordSuccessPage, ResetPasswordPage } from "./pages";
+import { MainPage, DashboardPage, FlightsPage, VisitedCoutriesPage, LogInPage, RegisterPage,  RetrivePasswordPage, RetrivePasswordSuccessPage, ResetPasswordPage, OpenedCountryCardPage } from "./pages";
+
+window.addEventListener("beforeunload", () => {
+  sessionStorage.setItem("lastUrl", window.location.pathname);
+});
 
 const App = () => {
   const { isAuthenticated } = useAppSelector(state => state.userSlice.user);
   const token = sessionStorage.getItem("token");
   const dispatch = useAppDispatch();
- 
+
+
+
+
   useEffect(() => {
     if (token && !isAuthenticated) {
       dispatch(postLoginByToken({token}));
@@ -26,6 +33,7 @@ const App = () => {
             <Route path="/">
               <Route index element={<MainPage />} />
               <Route path="/visited_countries" element={<VisitedCoutriesPage />} />
+              <Route path="/visited_countries/:id" element={<OpenedCountryCardPage />} />
               <Route path="/flies" element={<FlightsPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/retrive_password" element={< RetrivePasswordPage />} />

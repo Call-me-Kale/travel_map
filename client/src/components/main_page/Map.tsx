@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks";
 import styled from "@emotion/styled";
 import { ComposableMap, Geographies, Geography, Graticule, Sphere } from "react-simple-maps";
 
@@ -6,6 +8,18 @@ const geoUrl = "/countries.json";
 
 export const MapChart = () => {
   const [clickedCountries, setclickedCountries] = useState<any>([]);
+  const navigate = useNavigate();
+  const isAuthenticated = useAppSelector((state) => state.userSlice.user.isAuthenticated);
+
+  useEffect(() => {
+  if(isAuthenticated) {
+      const lastUrl = sessionStorage.getItem("lastUrl");
+      if(lastUrl) {
+        navigate(lastUrl);
+        sessionStorage.removeItem("lastUrl");
+      }
+    }
+  }, [isAuthenticated]);
 
   const handleClick = (geo:any) => {
     let isClicked = false;

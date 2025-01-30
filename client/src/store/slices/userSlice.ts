@@ -6,6 +6,7 @@ interface User {
     token: string;
     specialError: string;
     registrationStatus: string;
+    userData: { id: number };
 }
 
 interface Login {
@@ -41,7 +42,8 @@ const initialState: InitialStateInterface = {
         isAuthenticated: false,
         token: '',
         specialError: '',
-        registrationStatus: ''
+        registrationStatus: '',
+        userData: { id: 0 }
     },
 }
 
@@ -149,12 +151,14 @@ const usersSlice = createSlice({
             if(payload.status === 200) {
                 state.user.isAuthenticated = true;
                 state.user.token = payload.data.token;
+                state.user.userData.id = payload.data.userData.id;
                 sessionStorage.setItem("token", payload.data.token);
             }
         });
         builder.addCase(postLoginByToken.fulfilled, (state, {payload}: any) => {
             state.user.isAuthenticated = true;
             state.user.token = payload.data.token;
+            state.user.userData.id = payload.data.userData.id;
         });
         builder.addCase(postRegister.fulfilled, (state, {payload}:any) => {
             if(payload && payload.status === 400) {

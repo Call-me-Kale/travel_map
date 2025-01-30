@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
+import countryCardsSlice from "./slices/countryCardsSlice";
 
 export const store = configureStore({
      reducer: {
-        userSlice
+        userSlice,
+        countryCardsSlice
     },
 
     middleware: getDefaultMiddleware => 

@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import styled from "@emotion/styled";
 import { CountriesList } from "../components/visited_countries_page";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getCountries, getUserCards } from "../store/slices/countryCardsSlice";
 
 
 export const VisitedCoutriesPage = () => {
+    const dispatch = useAppDispatch();
+    const userId = useAppSelector((state) => state.userSlice.user.userData.id);
 
+    useEffect(() => {
+        dispatch(getCountries());
+        dispatch(getUserCards(userId));
+    },[]);
 
     return(
         <StyledVisitedCoutriesPage>
