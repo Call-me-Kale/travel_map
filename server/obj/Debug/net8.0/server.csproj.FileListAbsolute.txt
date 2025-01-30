@@ -110,7 +110,6 @@ C:\Users\pioko\Documents\GitHub\travel_map\server\bin\Debug\net8.0\tr\Microsoft.
 C:\Users\pioko\Documents\GitHub\travel_map\server\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\pioko\Documents\GitHub\travel_map\server\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\appsettings.json
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\server.exe
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\server.deps.json
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\server.runtimeconfig.json
@@ -221,3 +220,5 @@ C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\server.p
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\server.genruntimeconfig.cache
 C:\Users\pikostecki\Documents\GitHub\travel_map\server\obj\Debug\net8.0\ref\server.dll
 C:\Users\pioko\Documents\GitHub\travel_map\server\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\pikostecki\Documents\GitHub\travel_map\server\bin\Debug\net8.0\appsettings.json

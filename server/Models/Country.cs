@@ -1,22 +1,24 @@
 ﻿namespace server.Models;
+
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 
-
+[Keyless]
     public class Country
     {
-        [Key]
-        public string CountryCode { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Continent {  get; set; } = string.Empty;
+    
+        public string name_pl { get; set; } = string.Empty;
+        public string name_en {  get; set; } = string.Empty;
+        public string code { get; set; } = string.Empty;
 
-        public Country(string countryCode, string name, string continent)
+        public Country(string code, string name_pl, string name_en)
         {
-            this.CountryCode = countryCode;
-            this.Name = name;
-            this.Continent = continent;
+            this.name_pl = name_pl;
+            this.name_en = name_en;
+            this.code = code;
         }
-        
 
-    }
+
+}
 
