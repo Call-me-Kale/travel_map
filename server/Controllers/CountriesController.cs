@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
+using server.Services;
 
 namespace server.Controllers
 {
@@ -32,14 +33,25 @@ namespace server.Controllers
                     return BadRequest("All fields (userId and Country) are required.");
                 }
 
-                var allUserCountries = await _context.UserCountryCards.Where(u => u.UserId == UserId).ToListAsync();
+                var userCards = await (
+                    from card in _context.UserCountryCards
+                    join country in _context.Countries
+                        on card.CountryCode equals country.code
+                    where card.UserId == UserId
+                    select new
+                    {
+                        UserId = card.UserId,
+                        CountryCode = card.CountryCode,
+                        CountryName = country.name_pl
+                    }
+                ).ToListAsync();
 
-                if (allUserCountries == null)
+                if (userCards == null || !userCards.Any())
                 {
                     return BadRequest("User don't have any country cards!");
                 }
 
-                return allUserCountries;
+                return Ok(userCards);
             }
         }
 
@@ -50,26 +62,23 @@ namespace server.Controllers
                 if (createDto.UserId == 0 
                     || createDto.UserId == null
                     || string.IsNullOrEmpty(createDto.Description)
-                    || string.IsNullOrEmpty(createDto.CountryCode)
-                    || string.IsNullOrEmpty(createDto.CountryName))
+                    || string.IsNullOrEmpty(createDto.CountryCode))
                 {
                     return BadRequest("All fields (userId, Country, and Description) are required.");
                 }
 
                 var allUserCountries = await _context.UserCountryCards.Where(u => u.UserId == createDto.UserId).ToListAsync();
-                var isCountryInUse = allUserCountries.Any(u => u.CountryName == createDto.CountryName);
+                var isCountryInUse = allUserCountries.Any(u => u.CountryCode == createDto.CountryCode);
 
                 if (isCountryInUse)
                 {
                     return BadRequest("User already have this country!");
                 }
 
-
                 var countryCard = new CountryCard(
                     UserId: createDto.UserId,
-                    //CardDescription: createDto.Description,
                     CountryCode: createDto.CountryCode,
-                    CountryName: createDto.CountryName
+                    CountryName: createDto.CountryCode
 
                 );
 
@@ -87,8 +96,7 @@ namespace server.Controllers
                 if (createDto.UserId == 0
                     || createDto.UserId == null
                     || string.IsNullOrEmpty(createDto.Description)
-                    || string.IsNullOrEmpty(createDto.CountryCode)
-                    || string.IsNullOrEmpty(createDto.CountryName))
+                    || string.IsNullOrEmpty(createDto.CountryCode))
                 {
                     return BadRequest("All fields (userId, Country, and Description) are required.");
                 }

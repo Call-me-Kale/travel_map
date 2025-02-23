@@ -12,13 +12,12 @@ namespace server.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public string CountryCode { get; set; } = string.Empty;
-        public string CountryName { get; set; } = string.Empty;
 
         public CountryCard(int UserId, string CountryCode, string CountryName)
         {
             this.UserId = UserId;
             this.CountryCode = CountryCode;
-            this.CountryName = CountryName;
+
         }
 
     }
@@ -29,7 +28,6 @@ namespace server.Models
 
         public string Description { get; set; } = string.Empty;
         public string CountryCode { get; set; } = string.Empty;
-        public string CountryName { get; set; } = string.Empty;
 
     }
 
