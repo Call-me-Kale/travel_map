@@ -50,13 +50,14 @@ namespace server.Controllers
                 if (createDto.UserId == 0 
                     || createDto.UserId == null
                     || string.IsNullOrEmpty(createDto.Description)
-                    || string.IsNullOrEmpty(createDto.Country))
+                    || string.IsNullOrEmpty(createDto.CountryCode)
+                    || string.IsNullOrEmpty(createDto.CountryName))
                 {
                     return BadRequest("All fields (userId, Country, and Description) are required.");
                 }
 
                 var allUserCountries = await _context.UserCountryCards.Where(u => u.UserId == createDto.UserId).ToListAsync();
-                var isCountryInUse = allUserCountries.Any(u => u.CountryName == createDto.Country);
+                var isCountryInUse = allUserCountries.Any(u => u.CountryName == createDto.CountryName);
 
                 if (isCountryInUse)
                 {
@@ -66,8 +67,9 @@ namespace server.Controllers
 
                 var countryCard = new CountryCard(
                     UserId: createDto.UserId,
-                    CardDescription: createDto.Description,
-                    CountryName: createDto.Country
+                    //CardDescription: createDto.Description,
+                    CountryCode: createDto.CountryCode,
+                    CountryName: createDto.CountryName
 
                 );
 
@@ -85,20 +87,21 @@ namespace server.Controllers
                 if (createDto.UserId == 0
                     || createDto.UserId == null
                     || string.IsNullOrEmpty(createDto.Description)
-                    || string.IsNullOrEmpty(createDto.Country))
+                    || string.IsNullOrEmpty(createDto.CountryCode)
+                    || string.IsNullOrEmpty(createDto.CountryName))
                 {
                     return BadRequest("All fields (userId, Country, and Description) are required.");
                 }
 
                 var allUserCountries = await _context.UserCountryCards.Where(u => u.UserId == createDto.UserId).ToListAsync();
-                var CountryInUse = allUserCountries.FirstOrDefault(u => u.CountryName == createDto.Country);
+                var CountryInUse = allUserCountries.FirstOrDefault(u => u.CountryCode == createDto.CountryCode);
 
                 if (CountryInUse == null)
                 {
                     return BadRequest("User don't have this country!");
                 }
                    
-                CountryInUse.CardDescription = createDto.Description;
+                //CountryInUse.CardDescription = createDto.Description;
 
                 await _context.SaveChangesAsync();
 
@@ -118,7 +121,7 @@ namespace server.Controllers
                 }
 
                 var allUserCountries = await _context.UserCountryCards.Where(u => u.UserId == createDto.UserId).ToListAsync();
-                var CountryInUse = allUserCountries.FirstOrDefault(u => u.CountryName == createDto.Country);
+                var CountryInUse = allUserCountries.FirstOrDefault(u => u.CountryCode == createDto.Country);
 
                 if (CountryInUse == null)
                 {

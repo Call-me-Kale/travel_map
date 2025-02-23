@@ -9,6 +9,7 @@ namespace server.Models
         public string Password { get; set; } = string.Empty;
         public byte[] Salt { get; set; }
         public string Email { get; set; } = string.Empty;
+        public string Role {  get; set; } = string.Empty;
         public string? ResetPasswordToken { get; set; }
         public DateTime? ResetPasswordTokenExpires { get; set; }
         public string? SessionToken { get; set; }

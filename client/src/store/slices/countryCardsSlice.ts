@@ -18,6 +18,7 @@ export interface CountryCard {
 interface CreateCountryCard {
     userId: number;
     cardDescription: string;
+    countryCode: string;
     countryName: string;
 }
 
@@ -67,7 +68,8 @@ export const postCountryCard = createAsyncThunk(
 
         return axios.post(`http://localhost:5150/api/Countries/create`, {
             userId: payload.userId,
-            country: payload.countryName,
+            countryCode: payload.countryCode,
+            countryName: payload.countryName,
             description: payload.cardDescription
         });
         

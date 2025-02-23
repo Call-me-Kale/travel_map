@@ -27,7 +27,8 @@ export const CountriesList = () => {
     const dispatch = useAppDispatch();
 
     const AddCountryHandler = () => {
-        dispatch(postCountryCard({userId, cardDescription: newCardDescription, countryName: selectedValue.current!.value}));
+        const formatedSelectedValue = selectedValue.current!.value;
+        dispatch(postCountryCard({userId, cardDescription: newCardDescription, countryCode: formatedSelectedValue, countryName: selectedValue.current!.textContent !== null ? selectedValue.current!.textContent : ""}));
         setIsCreating(false);
         window.location.reload();
     }
@@ -71,7 +72,7 @@ export const CountriesList = () => {
                             <SectionHeader>Wybierz kraj</SectionHeader>
                             <SelectContainer>
                                 <SelectCountryInput ref={selectedValue} defaultValue={"Afganistan"}>
-                                    {countries ? countries.map((country, i) => <option value={country.name_pl} key={i}>{country.name_pl}</option>) : "" }
+                                    {countries ? countries.map((country, i) => <option value={country.code} key={i}>{country.name_pl}</option>) : "" }
                                 </SelectCountryInput>
                             </SelectContainer>
                         </CountrySelectionWrapper>

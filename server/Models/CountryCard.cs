@@ -11,13 +11,13 @@ namespace server.Models
         [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string CardDescription { get; set; } = string.Empty;
+        public string CountryCode { get; set; } = string.Empty;
         public string CountryName { get; set; } = string.Empty;
 
-        public CountryCard(int UserId, string CardDescription, string CountryName)
+        public CountryCard(int UserId, string CountryCode, string CountryName)
         {
             this.UserId = UserId;
-            this.CardDescription = CardDescription;
+            this.CountryCode = CountryCode;
             this.CountryName = CountryName;
         }
 
@@ -26,8 +26,11 @@ namespace server.Models
     public class CreateDto
     {
         public int UserId { get; set; }
-        public string Country { get; set; } = string.Empty;
+
         public string Description { get; set; } = string.Empty;
+        public string CountryCode { get; set; } = string.Empty;
+        public string CountryName { get; set; } = string.Empty;
+
     }
 
     public class DeleteDTO
